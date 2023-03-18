@@ -8,4 +8,8 @@
     <packaging>pom</packaging>
     <version>0.1</version>
 
+    <modules>
+        <module>ProxyVerba</module>
+    </modules>
+
 </project>
