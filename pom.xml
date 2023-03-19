@@ -11,6 +11,7 @@
     <modules>
         <module>ProxyVerba</module>
         <module>ApiVerba</module>
+        <module>DataApiVerba</module>
     </modules>
 
 </project>
