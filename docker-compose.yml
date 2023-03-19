@@ -1,10 +1,14 @@
 version: "3"
 services:
   verba-api:
-    build: ./ApiVerba
+    build: ./verba-api
     ports:
-      - "8080:8080"
+      - "8081:8081"
   verba-data:
-    build: ./DataApiVerba
+    build: ./verba-data
     ports:
       - "8082:8082"
+  verba-proxy:
+    build: ./verba-proxy
+    ports:
+      - "8080:8080"

@@ -9,9 +9,9 @@
     <version>0.0.1</version>
 
     <modules>
-        <module>ProxyVerba</module>
-        <module>ApiVerba</module>
-        <module>DataApiVerba</module>
+        <module>verba-proxy</module>
+        <module>verba-api</module>
+        <module>verba-data</module>
     </modules>
 
 </project>
