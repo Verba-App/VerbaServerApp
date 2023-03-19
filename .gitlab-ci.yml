@@ -1,0 +1,10 @@
+stages:
+  - build
+
+build:
+  image: ubuntu:22.04
+  tags:
+    - test
+  stage: build
+  script:
+    - echo "Deploying to production server"
