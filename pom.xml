@@ -6,7 +6,7 @@
     <groupId>ru.nsu.ccfit.verba</groupId>
     <artifactId>verba-server-app</artifactId>
     <packaging>pom</packaging>
-    <version>0.1</version>
+    <version>0.0.1</version>
 
     <modules>
         <module>ProxyVerba</module>
