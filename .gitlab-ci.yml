@@ -9,6 +9,8 @@ build:
   stage: build
   script:
     - docker-compose build
+  before_script:
+    - docker-compose --version
 
 test:
   tags:
