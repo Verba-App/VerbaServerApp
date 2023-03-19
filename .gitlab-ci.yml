@@ -1,10 +1,28 @@
 stages:
   - build
+  - test
+  - deploy
 
 build:
-  image: ubuntu:22.04
   tags:
-    - test
+    - hello
   stage: build
   script:
-    - echo "Deploying to production server"
+    - docker-compose build
+
+test:
+  tags:
+    - hello
+  stage: test
+  script:
+    - docker-compose run verba-api mvn test
+    - docker-compose run verba-data mvn test
+    - docker-compose run verba-proxy mvn test
+
+deploy:
+  tags:
+    - hello
+  stage: deploy
+  script:
+    - docker-compose up -d
+
