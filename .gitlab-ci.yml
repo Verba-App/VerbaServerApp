@@ -5,14 +5,14 @@ stages:
 
 build:
   tags:
-    - build
+    - hello
   stage: build
   script:
     - docker-compose build
 
 test:
   tags:
-    - test
+    - hello
   stage: test
   script:
     - docker-compose run verba-api mvn test
@@ -21,7 +21,7 @@ test:
 
 deploy:
   tags:
-    - deploy
+    - hello
   stage: deploy
   script:
     - docker-compose up -d
