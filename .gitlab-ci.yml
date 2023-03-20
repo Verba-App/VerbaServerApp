@@ -8,7 +8,7 @@ build:
     - hello
   stage: build
   script:
-    - mvn clean package
+    - mvn package -dskiptests
     - docker-compose build
   before_script:
     - docker-compose --version
@@ -18,9 +18,7 @@ test:
     - hello
   stage: test
   script:
-    - docker-compose run verba-api mvn test
-    - docker-compose run verba-data mvn test
-    - docker-compose run verba-proxy mvn test
+    - mvn test
 
 deploy:
   tags:
