@@ -5,7 +5,7 @@ stages:
 
 build:
   tags:
-    - hello
+    - build
   stage: build
   script:
     - mvn package -DskipTests
@@ -15,14 +15,14 @@ build:
 
 test:
   tags:
-    - hello
+    - test
   stage: test
   script:
     - mvn test
 
 deploy:
   tags:
-    - hello
+    - deploy
   stage: deploy
   script:
     - docker-compose up -d
