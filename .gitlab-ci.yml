@@ -9,6 +9,7 @@ build:
   stage: build
   script:
     - mvn clean package
+    - docker-compose build
   before_script:
     - docker-compose --version
 
