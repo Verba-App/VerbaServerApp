@@ -8,7 +8,7 @@ build:
     - hello
   stage: build
   script:
-    - mvn package -dskiptests
+    - mvn package -DskipTests
     - docker-compose build
   before_script:
     - docker-compose --version
