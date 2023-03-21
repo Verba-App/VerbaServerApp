@@ -10,9 +10,7 @@ build:
   script:
     - mvn package -DskipTests
     - docker-compose build
-  before_script:
-    - docker-compose --version
-
+    
 test:
   tags:
     - test
@@ -26,4 +24,8 @@ deploy:
   stage: deploy
   script:
     - docker-compose up -d
+  only:
+    - merge_request
+    - master
+    - develop
 
