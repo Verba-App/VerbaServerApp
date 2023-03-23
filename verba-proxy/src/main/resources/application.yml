@@ -1,2 +1,14 @@
 server:
   port: 8080
+
+zuul:
+  routes:
+    api-service:
+      path: /api/**
+      url: http://localhost:8081/
+
+    data-service:
+      path: /data/**
+      url: http://localhost:8082/
+
+
