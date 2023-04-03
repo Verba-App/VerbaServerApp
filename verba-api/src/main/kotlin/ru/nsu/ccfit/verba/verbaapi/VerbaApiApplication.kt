@@ -1,11 +1,11 @@
-package ru.nsu.ccfit.verba.apiverba
+package ru.nsu.ccfit.verba.verbaapi
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ApiVerbaApplication
+class VerbaApiApplication
 
 fun main(args: Array<String>) {
-    runApplication<ApiVerbaApplication>(*args)
+    runApplication<VerbaApiApplication>(*args)
 }
