@@ -1,2 +1,15 @@
 server:
   port: 8081
+
+#postgres
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: jdbc:postgresql://localhost:35432/db
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
