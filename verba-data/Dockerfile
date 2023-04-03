@@ -4,7 +4,6 @@
 #RUN mvn dependency:go-offline
 #COPY src/ /app/src/
 #RUN mvn package
-
 FROM openjdk:17
 #COPY --from=build /app/target/verba-data-0.0.1.jar /verba-data-0.0.1.jar
 ADD target/verba-data-0.0.1.jar verba-data-0.0.1.jar
