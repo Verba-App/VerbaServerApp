@@ -10,7 +10,6 @@
 
     <modules>
         <module>verba-proxy</module>
-        <module>verba-api</module>
         <module>verba-data</module>
     </modules>
 

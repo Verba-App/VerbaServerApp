@@ -4,10 +4,13 @@ services:
     build: ./verba-api
     ports:
       - "8081:8081"
+    depends_on:
+      - postgres
   verba-data:
     build: ./verba-data
     ports:
       - "8082:8082"
+
   verba-proxy:
     build: ./verba-proxy
     ports:
