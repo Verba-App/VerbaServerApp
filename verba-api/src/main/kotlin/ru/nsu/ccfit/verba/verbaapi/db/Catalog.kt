@@ -13,5 +13,6 @@ class Catalog(
     var createDate: Date,
     @ManyToOne
     var author: User,
-    var group: Long
+    @ManyToOne
+    var group: GroupCatalog
 )

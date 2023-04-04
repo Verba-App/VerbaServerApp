@@ -4,6 +4,6 @@ CREATE TABLE "catalog"
     "name"       VARCHAR(255) NOT NULL,
     "create_date" DATE  NOT NULL,
     "author_id"     BIGINT      REFERENCES "user",
-    "group"      BIGINT      NOT NULL,
+    "group_id"      BIGINT REFERENCES "group_catalog" NOT NULL,
     CONSTRAINT "catalog_pk" PRIMARY KEY ("id")
 )
