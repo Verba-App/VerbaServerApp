@@ -1,0 +1,13 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: eserver
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8080/eureka}
+  server:
+    renewalPercentThreshold: 0.33

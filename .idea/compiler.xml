@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.26/8f8cf0372abf564913e9796623aac4c8ea44025a/lombok-1.18.26.jar" />
+        </processorPath>
+        <module name="verba-server-app.verba-data.main" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="17">
+      <module name="demo" target="17" />
+      <module name="demo.main" target="17" />
+      <module name="demo.test" target="17" />
+      <module name="eureka-server" target="17" />
+      <module name="eureka-server.main" target="17" />
+      <module name="eureka-server.test" target="17" />
+      <module name="proxy" target="17" />
+      <module name="proxy-verba.main" target="17" />
+      <module name="proxy-verba.test" target="17" />
+      <module name="proxy.main" target="17" />
+      <module name="proxy.test" target="17" />
+      <module name="verba-data" target="17" />
+      <module name="verba-data.main" target="17" />
+      <module name="verba-data.test" target="17" />
+      <module name="verba-proxy" target="17" />
+      <module name="verba-proxy.main" target="17" />
+      <module name="verba-proxy.test" target="17" />
+      <module name="zuulproxy" target="17" />
+      <module name="zuulproxy.main" target="17" />
+      <module name="zuulproxy.test" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
