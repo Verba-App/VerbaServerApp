@@ -9,7 +9,6 @@ build:
   stage: build
   script:
     - mvn package -DskipTests
-    - ./verba-api/gradlew build -x test
     - docker-compose build
     
 test:
