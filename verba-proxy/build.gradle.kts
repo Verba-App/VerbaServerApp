@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "ru.nsu.ccfit.verba"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {

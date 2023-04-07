@@ -1,0 +1,32 @@
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  tags:
+    - build
+  stage: build
+  script:
+    - chmod +x gradlew
+    - ./gradlew bootJar
+    - docker-compose build
+    
+test:
+  tags:
+    - test
+  stage: test
+  script:
+    - ./gradlew test
+
+deploy:
+  tags:
+    - deploy
+  stage: deploy
+  script:
+    - docker-compose up -d
+  only:
+    - merge_request
+    - master
+    - develop
+
