@@ -1,0 +1,22 @@
+server:
+  port: 8080
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://eureka-server:8085/eureka}
+  instance:
+    preferIpAddress: true
+spring:
+  application:
+    name: verba-proxy
+  cloud:
+    gateway:
+      routes:
+        - id: verba-api
+          uri: http://verba-api:8081
+          predicates:
+            - Path=/verba-api/**
+        - id: verba-data
+          uri: http://verba-data:8083
+          predicates:
+            - Path=/verba-data/**
