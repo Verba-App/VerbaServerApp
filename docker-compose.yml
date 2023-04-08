@@ -1,14 +1,82 @@
 version: "3"
 services:
+  eureka-server:
+    container_name: eureka-server
+    build: ./eureka-server
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_URI=http://eureka-server:8085/eureka
+    networks:
+      - eureka-web
+    ports:
+      - "8085:8085"
+    expose:
+      - "8085"
+
   verba-api:
+    container_name: verba-api
     build: ./verba-api
-    ports:
-      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://verba-postgres:5431/db
+      - EUREKA_URI=http://eureka-server:8085/eureka
+    expose:
+      - "8081"
+    networks:
+      - gateway
+      - postgres-web
+      - eureka-web
+    depends_on:
+      - verba-postgres
+
   verba-data:
+    container_name: verba-data
     build: ./verba-data
-    ports:
-      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_URI=http://eureka-server:8085/eureka
+    expose:
+      - "8083"
+    networks:
+      - eureka-web
+
   verba-proxy:
+    container_name: verba-proxy
     build: ./verba-proxy
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_URI=http://eureka-server:8085/eureka
+    networks:
+      - eureka-web
+      - gateway
+    depends_on:
+      - eureka-server
+      - verba-api
+      - verba-data
     ports:
       - "8080:8080"
+    expose:
+      - "8080"
+
+  verba-postgres:
+    container_name: verba-postgres
+    image: 'postgres:13.1-alpine'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=db
+      - PGDATA=/var/lib/postgresql/data/db
+    networks:
+      - postgres-web
+    expose:
+      - "5431"
+    ports:
+      - "5431:5431"
+    command: -p 5431
+    restart: always
+
+networks:
+  gateway:
+    driver: bridge
+  postgres-web:
+  eureka-web:

@@ -1,0 +1,13 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: eserver
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://eureka-server:8085/eureka}
+  server:
+    renewalPercentThreshold: 0.33
