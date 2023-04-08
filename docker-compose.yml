@@ -17,12 +17,12 @@ services:
     build: ./verba-api
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5431/db
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://verba-postgres:5431/db
     networks:
       - postgres-web
       - eureka-web
     depends_on:
-      - postgres
+      - verba-postgres
 
   verba-data:
     container_name: verba-data
@@ -44,8 +44,8 @@ services:
     expose:
       - "8080"
 
-  postgres:
-    container_name: postgres
+  verba-postgres:
+    container_name: verba-postgres
     image: 'postgres:13.1-alpine'
     environment:
       - POSTGRES_USER=postgres
