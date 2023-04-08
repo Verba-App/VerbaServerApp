@@ -7,18 +7,3 @@ eureka:
       defaultZone: ${EUREKA_URI:http://eureka-server:8085/eureka}
   instance:
     preferIpAddress: true
-
-#postgres
-spring:
-  jpa:
-    database: POSTGRESQL
-    show-sql: true
-    hibernate:
-      ddl-auto: validate
-  datasource:
-    url: jdbc:postgresql://verba-postgres:5431/db
-    username: postgres
-    password: postgres
-    driverClassName: org.postgresql.Driver
-  application:
-    name: verba-api

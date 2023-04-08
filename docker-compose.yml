@@ -5,6 +5,7 @@ services:
     build: ./eureka-server
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_URI=http://eureka-server:8085/eureka
     networks:
       - eureka-web
     ports:
@@ -18,7 +19,11 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_DATASOURCE_URL=jdbc:postgresql://verba-postgres:5431/db
+      - EUREKA_URI=http://eureka-server:8085/eureka
+    expose:
+      - "8081"
     networks:
+      - gateway
       - postgres-web
       - eureka-web
     depends_on:
@@ -29,6 +34,9 @@ services:
     build: ./verba-data
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_URI=http://eureka-server:8085/eureka
+    expose:
+      - "8083"
     networks:
       - eureka-web
 
@@ -37,8 +45,14 @@ services:
     build: ./verba-proxy
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_URI=http://eureka-server:8085/eureka
     networks:
       - eureka-web
+      - gateway
+    depends_on:
+      - eureka-server
+      - verba-api
+      - verba-data
     ports:
       - "8080:8080"
     expose:
@@ -62,5 +76,7 @@ services:
     restart: always
 
 networks:
+  gateway:
+    driver: bridge
   postgres-web:
   eureka-web:
