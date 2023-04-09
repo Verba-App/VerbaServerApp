@@ -9,5 +9,4 @@ public class DataApiVerbaApplication {
     public static void main(String[] args) {
         SpringApplication.run(DataApiVerbaApplication.class, args);
     }
-
 }
