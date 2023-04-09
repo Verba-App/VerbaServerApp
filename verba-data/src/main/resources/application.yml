@@ -1,2 +1,11 @@
 server:
-  port: 8082
+  port: 8083
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8085/eureka}
+  instance:
+    preferIpAddress: true
+spring:
+  application:
+    name: verba-data
