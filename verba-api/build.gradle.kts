@@ -23,11 +23,18 @@ extra["springCloudVersion"] = "2022.0.2"
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-
+    implementation("org.flywaydb:flyway-core")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    runtimeOnly("org.postgresql:postgresql")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
 
+    testImplementation("org.testcontainers:postgresql:1.17.4")
+    testImplementation("org.assertj:assertj-core:3.24.2")
+    testImplementation("org.jsoup:jsoup:1.15.3")
+    testImplementation("org.testcontainers:junit-jupiter:1.17.6")
+    testImplementation("io.github.ulfs:assertj-jsoup:0.1.4")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
@@ -36,7 +43,6 @@ dependencyManagement {
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
     }
 }
-
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
