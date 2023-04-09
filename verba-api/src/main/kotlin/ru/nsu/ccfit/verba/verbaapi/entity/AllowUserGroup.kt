@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.verba.verbaapi.db
+package ru.nsu.ccfit.verba.verbaapi.entity
 
 import jakarta.persistence.*
 
@@ -8,8 +8,8 @@ class AllowUserGroup(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private var id: Long,
-    @ManyToOne
 
+    @ManyToOne
     private val user: User,
 
     @ManyToOne
@@ -19,5 +19,6 @@ class AllowUserGroup(
 
     private val accessChanges: Boolean,
 
-    private val tactic: Long
+    @ManyToOne
+    private val tactic: Tactics
 )

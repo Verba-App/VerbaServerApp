@@ -1,10 +1,10 @@
-package ru.nsu.ccfit.verba.verbaapi.db
+package ru.nsu.ccfit.verba.verbaapi.entity
 
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "tactics")
-class Tactics(
+@Table(name = "group_catalog")
+class GroupCatalog(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private var id: Long,

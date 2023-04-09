@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.verba.verbaapi.db
+package ru.nsu.ccfit.verba.verbaapi.entity
 
 import jakarta.persistence.*
 import java.sql.Date
