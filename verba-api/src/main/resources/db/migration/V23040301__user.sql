@@ -1,4 +1,4 @@
-CREATE TABLE "user"
+CREATE TABLE "verba_user"
 (
     "id"       serial       NOT NULL,
     "name"     VARCHAR(255) NOT NULL UNIQUE,

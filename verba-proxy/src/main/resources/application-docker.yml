@@ -11,12 +11,26 @@ spring:
     name: verba-proxy
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
       routes:
         - id: verba-api
-          uri: http://verba-api:8081
+          uri: lb://verba-api
           predicates:
-            - Path=/verba-api/**
+            - Path=/api/**
+          filters:
+            - AuthenticationFilter
+
         - id: verba-data
-          uri: http://verba-data:8083
+          uri: lb://verba-data
           predicates:
-            - Path=/verba-data/**
+            - Path=/data/*
+          filters:
+            - AuthenticationFilter
+
+        - id: verba-auth
+          uri: lb://verba-auth
+          predicates:
+            - Path=/auth/**

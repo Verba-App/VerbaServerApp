@@ -15,3 +15,22 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+      routes:
+        - id: verba-api
+          uri: lb://verba-api
+          predicates:
+            - Path=/api/**
+          filters:
+            - AuthenticationFilter
+
+        - id: verba-data
+          uri: lb://verba-data
+          predicates:
+            - Path=/data/*
+          filters:
+            - AuthenticationFilter
+
+        - id: verba-auth
+          uri: lb://verba-auth
+          predicates:
+            - Path=/auth/**

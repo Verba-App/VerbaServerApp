@@ -4,7 +4,7 @@ import jakarta.persistence.*
 import java.sql.Date
 
 @Entity
-@Table(name = "user")
+@Table(name = "verba_user")
 class User(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
