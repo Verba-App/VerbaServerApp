@@ -13,13 +13,6 @@ build:
   script:
     - ./gradlew bootJar
     - docker-compose build
-    
-test:
-  tags:
-    - test
-  stage: test
-  script:
-    - ./gradlew test
 
 deploy:
   tags:
@@ -28,7 +21,5 @@ deploy:
   script:
     - docker-compose up -d
   only:
-    - merge_request
-    - master
     - develop
 

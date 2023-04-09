@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.verba.verbaapi.entity
+package ru.nsu.ccfit.verba.verbaapi.domain
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import jakarta.persistence.*

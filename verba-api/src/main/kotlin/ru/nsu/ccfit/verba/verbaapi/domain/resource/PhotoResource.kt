@@ -1,9 +1,9 @@
-package ru.nsu.ccfit.verba.verbaapi.entity.resource
+package ru.nsu.ccfit.verba.verbaapi.domain.resource
 
 import jakarta.persistence.Entity
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
-import ru.nsu.ccfit.verba.verbaapi.entity.User
+import ru.nsu.ccfit.verba.verbaapi.domain.User
 
 
 @Entity

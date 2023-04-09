@@ -1,8 +1,8 @@
-package ru.nsu.ccfit.verba.verbaapi.entity.card
+package ru.nsu.ccfit.verba.verbaapi.domain.card
 
 import jakarta.persistence.*
-import ru.nsu.ccfit.verba.verbaapi.entity.Catalog
-import ru.nsu.ccfit.verba.verbaapi.entity.Word
+import ru.nsu.ccfit.verba.verbaapi.domain.Catalog
+import ru.nsu.ccfit.verba.verbaapi.domain.Word
 import java.sql.Date
 
 

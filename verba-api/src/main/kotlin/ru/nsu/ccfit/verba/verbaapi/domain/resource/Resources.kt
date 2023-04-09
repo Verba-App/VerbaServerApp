@@ -1,7 +1,7 @@
-package ru.nsu.ccfit.verba.verbaapi.entity.resource
+package ru.nsu.ccfit.verba.verbaapi.domain.resource
 
 import jakarta.persistence.*
-import ru.nsu.ccfit.verba.verbaapi.entity.User
+import ru.nsu.ccfit.verba.verbaapi.domain.User
 
 enum class ResourceType {
     FILE,

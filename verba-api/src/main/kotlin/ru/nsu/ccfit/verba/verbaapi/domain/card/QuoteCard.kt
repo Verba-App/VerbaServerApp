@@ -1,16 +1,16 @@
-package ru.nsu.ccfit.verba.verbaapi.entity.card
+package ru.nsu.ccfit.verba.verbaapi.domain.card
 
 import jakarta.persistence.Entity
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
-import ru.nsu.ccfit.verba.verbaapi.entity.Catalog
-import ru.nsu.ccfit.verba.verbaapi.entity.resource.PhotoResource
-import ru.nsu.ccfit.verba.verbaapi.entity.Word
+import ru.nsu.ccfit.verba.verbaapi.domain.Catalog
+import ru.nsu.ccfit.verba.verbaapi.domain.resource.QuoteResource
+import ru.nsu.ccfit.verba.verbaapi.domain.Word
 import java.sql.Date
 
 @Entity
-@Table(name = "photo_card")
-class PhotoCard(
+@Table(name = "quote_card")
+class QuoteCard(
     override var id: Long,
     @ManyToOne
     override var catalog: Catalog,
@@ -20,5 +20,5 @@ class PhotoCard(
     @ManyToOne
     override var word: Word,
     @ManyToOne
-    var photoResource: PhotoResource
+    var quoteResource: QuoteResource
 ) : Card()
