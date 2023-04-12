@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.verba.verbaproxy.filter
+package ru.nsu.ccfit.verba.verbaproxy.config
 
 import org.springframework.http.server.reactive.ServerHttpRequest
 import org.springframework.stereotype.Component

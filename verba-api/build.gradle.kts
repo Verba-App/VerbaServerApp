@@ -26,6 +26,7 @@ dependencies {
     implementation("org.flywaydb:flyway-core")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     runtimeOnly("org.postgresql:postgresql")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 
