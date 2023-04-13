@@ -8,7 +8,7 @@ import org.testcontainers.containers.PostgreSQLContainer
 
 val pgContainer: PostgreSQLContainer<*> by lazy {
     PostgreSQLContainer("postgres:15")
-        .withExposedPorts(15435)
+        .withExposedPorts(5432)
         .withUsername("test-verba-postgres")
         .withPassword("postgres")
         .withDatabaseName("postgres")
