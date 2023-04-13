@@ -13,8 +13,6 @@ build:
   script:
     - ./gradlew bootJar
     - docker-compose build
-  only:
-    - develop
 
 deploy:
   tags:
