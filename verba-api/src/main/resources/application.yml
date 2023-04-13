@@ -6,9 +6,10 @@ eureka:
       defaultZone: ${EUREKA_URI:http://localhost:8085/eureka}
   instance:
     preferIpAddress: true
-
 #postgres
 spring:
+  application:
+    name: verba-api
   jpa:
     database: POSTGRESQL
     show-sql: true

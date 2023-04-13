@@ -1,7 +1,6 @@
 package ru.nsu.ccfit.verba.verbaauth.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.nsu.ccfit.verba.verbaauth.entity.UserCredential;
@@ -23,12 +22,15 @@ public class AuthService {
         return "user added to the system";
     }
 
-    public String generateToken(String username) {
-        return jwtService.generateToken(username);
+    public String generateToken(UserCredential user) {
+        return jwtService.generateToken(user.getId(),user.getName());
     }
 
     public void validateToken(String token) {
         jwtService.validateToken(token);
     }
 
+    public UserCredential getUserByName(String name) {
+        return repository.findByName(name).orElseThrow();
+    }
 }

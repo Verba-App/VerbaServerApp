@@ -24,8 +24,10 @@ public class JwtService {
     }
 
 
-    public String generateToken(String userName) {
+    public String generateToken(Long userId, String userName) {
         Map<String, Object> claims = new HashMap<>();
+        // Добавляется заголовок по которому можно определить пользователя
+        claims.put("user-id", userId);
         return createToken(claims, userName);
     }
 

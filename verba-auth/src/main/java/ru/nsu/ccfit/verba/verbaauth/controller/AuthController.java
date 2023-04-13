@@ -14,7 +14,6 @@ import ru.nsu.ccfit.verba.verbaauth.service.AuthService;
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthService  service;
-
     private  final AuthenticationManager authenticationManager;
 
     @PostMapping("/register")
@@ -26,7 +25,7 @@ public class AuthController {
     public String getToken(@RequestBody AuthRequest authRequest) {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         if (authenticate.isAuthenticated()) {
-            return service.generateToken(authRequest.getUsername());
+            return service.generateToken(service.getUserByName(authenticate.getName()));
         } else {
             throw new RuntimeException("invalid access");
         }

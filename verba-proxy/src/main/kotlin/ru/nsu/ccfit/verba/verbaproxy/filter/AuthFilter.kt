@@ -19,6 +19,7 @@ class AuthenticationFilter(
 
     override fun apply(config: Config): GatewayFilter {
         return GatewayFilter { exchange, chain ->
+            val request = exchange.request
             if (validator.isSecured.test(exchange.request)) {
                 if (!exchange.request.headers.containsKey(HttpHeaders.AUTHORIZATION)) {
                     throw RuntimeException("missing authorization header")
@@ -29,12 +30,13 @@ class AuthenticationFilter(
                     authHeader = authHeader.substring(7)
                 }
                 try {
-                    jwtConfig.validateToken(authHeader)
+                    val userId = jwtConfig.validateToken(authHeader)
+                    request.mutate().header("user-id", userId.toString())
                 } catch (e: Exception) {
                     throw RuntimeException("un authorized access to application")
                 }
             }
-            chain.filter(exchange)
+            chain.filter(exchange.mutate().request(request).build())
         }
     }
 
