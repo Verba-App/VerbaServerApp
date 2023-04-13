@@ -6,17 +6,35 @@ eureka:
       defaultZone: ${EUREKA_URI:http://eureka-server:8085/eureka}
   instance:
     preferIpAddress: true
+
+jwt:
+  secret: ${JWT_SECRET:"5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437"}
+
 spring:
   application:
     name: verba-proxy
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
       routes:
         - id: verba-api
-          uri: http://verba-api:8081
+          uri: lb://verba-api
           predicates:
-            - Path=/verba-api/**
+            - Path=/api/**
+          filters:
+            - AuthenticationFilter
+
         - id: verba-data
-          uri: http://verba-data:8083
+          uri: lb://verba-data
           predicates:
-            - Path=/verba-data/**
+            - Path=/data/*
+          filters:
+            - AuthenticationFilter
+
+        - id: verba-auth
+          uri: lb://verba-auth
+          predicates:
+            - Path=/auth/**

@@ -4,7 +4,7 @@ CREATE TABLE "resources"
 (
     "id"        BIGINT                   not null,
     "name"      VARCHAR(255)             NOT NULL,
-    "author_id" BIGINT REFERENCES "user" NOT NULL,
+    "author_id" BIGINT REFERENCES "verba_user" NOT NULL,
     "type"      resources_type           NOT NULL
 );
 

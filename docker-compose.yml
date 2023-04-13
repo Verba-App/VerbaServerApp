@@ -29,6 +29,22 @@ services:
     depends_on:
       - verba-postgres
 
+  verba-auth:
+    container_name: verba-auth
+    build: ./verba-auth
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://verba-postgres:5431/db
+      - EUREKA_URI=http://eureka-server:8085/eureka
+    expose:
+      - "8090"
+    networks:
+      - gateway
+      - postgres-web
+      - eureka-web
+    depends_on:
+      - verba-postgres
+
   verba-data:
     container_name: verba-data
     build: ./verba-data
@@ -79,4 +95,6 @@ networks:
   gateway:
     driver: bridge
   postgres-web:
+    driver: bridge
   eureka-web:
+    driver: bridge
