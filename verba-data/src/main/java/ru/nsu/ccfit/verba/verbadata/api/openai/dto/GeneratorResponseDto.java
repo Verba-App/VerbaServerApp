@@ -8,6 +8,9 @@ import java.util.List;
 @Getter
 @Setter
 public class GeneratorResponseDto {
+    //** Номер ответа */
     private String created;
+
+    //** Список ссылок на созданные картинки */
     private List<String> data;
 }
