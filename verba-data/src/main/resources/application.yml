@@ -12,6 +12,7 @@ spring:
   application:
     name: verba-data
 
+
 api:
   openai:
     url: "https://api.openai.com/"
