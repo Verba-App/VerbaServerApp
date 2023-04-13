@@ -16,10 +16,10 @@ val pgContainer: PostgreSQLContainer<*> by lazy {
         .withEnv("PGDATA", "/var/lib/postgresql/data-no-mounted")
         .withCommand("-c max_connections=400")
         .withReuse(true)
-        .withDatabaseName("hello")
-        //.withInitScript("db/verba-db-init.sql")
+        .withInitScript("db/verba-db-init.sql")
         .apply {
             start()
+            this.withDatabaseName("db")
         }
 }
 
@@ -28,7 +28,7 @@ class TestContainerDbContextInitializer : ApplicationContextInitializer<Configur
     override fun initialize(applicationContext: ConfigurableApplicationContext) {
         applicationContext.overrideProperties(
             "spring.datasource.url" to pgContainer.jdbcUrl,
-            "spring.datasource.username" to "postgres",
+            "spring.datasource.username" to "test-verba-postgres",
             "spring.datasource.password" to "postgres"
         )
     }
