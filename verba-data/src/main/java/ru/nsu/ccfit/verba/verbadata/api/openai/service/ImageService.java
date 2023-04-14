@@ -1,6 +1,6 @@
 package ru.nsu.ccfit.verba.verbadata.api.openai.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import retrofit2.Call;
 import retrofit2.Response;
 import org.springframework.stereotype.Service;
@@ -10,10 +10,10 @@ import ru.nsu.ccfit.verba.verbadata.api.openai.inter.OpenAiApiInterface;
 import java.io.IOException;
 
 @Service
+@RequiredArgsConstructor
 public class ImageService {
 
-    @Autowired
-    private OpenAiApiInterface service;
+    private final OpenAiApiInterface service;
 
 
     public String generateImage(GeneratorRequestDto request) throws IOException {
