@@ -4,13 +4,21 @@ before_script:
 stages:
   - build
   - deploy
+  - test
+
+test:
+  tags:
+    - test
+  stage: test
+  script:
+    - echo "Все ок)"
 
 build:
   tags:
     - build
   stage: build
   script:
-    - docker-compose kill
+    - docker-compose down
   only:
     - develop
 
