@@ -10,15 +10,17 @@ build:
     - build
   stage: build
   script:
+    - docker-compose kill
     - ./gradlew bootJar
-    - docker-compose build
+  only:
+    - develop
 
 deploy:
   tags:
     - deploy
   stage: deploy
   script:
-    - docker-compose up -d
+    - docker-compose up -d --force-recreate --no-deps --build
   only:
     - develop
 

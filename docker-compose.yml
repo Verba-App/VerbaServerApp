@@ -43,7 +43,7 @@ services:
       - postgres-web
       - eureka-web
     depends_on:
-      - verba-postgres
+      - verba-api
 
   verba-data:
     container_name: verba-data
