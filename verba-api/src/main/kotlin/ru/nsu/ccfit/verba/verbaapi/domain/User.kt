@@ -1,7 +1,6 @@
 package ru.nsu.ccfit.verba.verbaapi.domain
 
 import jakarta.persistence.*
-import java.sql.Date
 
 @Entity
 @Table(name = "verba_user")
@@ -13,8 +12,6 @@ class User(
     var name: String,
 
     var email: String,
-
-    var birthday: Date,
 
     var region: String,
 
