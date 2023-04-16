@@ -1,6 +1,5 @@
 package ru.nsu.ccfit.verba.verbaauth.config;
 
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,7 +26,7 @@ public class AuthConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/register", "/auth/token", "/auth/validate").permitAll()
+                .requestMatchers("/auth/register", "/auth/token", "/auth/authenticate").permitAll()
                 .and()
                 .build();
     }

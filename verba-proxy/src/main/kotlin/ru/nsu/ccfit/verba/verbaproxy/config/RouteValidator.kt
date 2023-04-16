@@ -18,6 +18,7 @@ class RouteValidator {
         val openApiEndpoints = listOf(
             "/auth/register",
             "/auth/token",
+            "/auth/authenticate",
             "/eureka"
         )
     }
