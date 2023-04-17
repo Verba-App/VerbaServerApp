@@ -7,6 +7,7 @@ plugins {
     kotlin("plugin.spring") version "1.8.0"
     kotlin("plugin.jpa") version "1.8.0"
     kotlin("plugin.noarg") version "1.8.0"
+    kotlin("kapt") version "1.8.0"
 }
 
 group = "ru.nsu.ccfit.verba"
@@ -22,11 +23,21 @@ extra["springCloudVersion"] = "2022.0.2"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("com.fasterxml.jackson.core:jackson-databind")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.flywaydb:flyway-core")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+
+    implementation ("org.springframework.boot:spring-boot-starter-validation")
+
+    implementation( "org.mapstruct:mapstruct:1.4.2.Final")
+    kapt("org.mapstruct:mapstruct-processor:1.4.2.Final")
+
+   
+    implementation("org.springdoc:springdoc-openapi-ui:1.7.0")
+    implementation("io.swagger.core.v3:swagger-models:2.2.9")
     runtimeOnly("org.postgresql:postgresql")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 
