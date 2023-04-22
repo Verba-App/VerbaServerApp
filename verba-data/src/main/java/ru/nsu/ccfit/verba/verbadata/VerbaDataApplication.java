@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.verba.dataapiverba;
+package ru.nsu.ccfit.verba.verbadata;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.verba.dataapiverba;
+package ru.nsu.ccfit.verba.verbadata.api.yandexDictionary;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
