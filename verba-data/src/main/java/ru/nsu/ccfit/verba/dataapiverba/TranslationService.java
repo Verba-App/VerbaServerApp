@@ -7,11 +7,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import javax.net.ssl.HttpsURLConnection;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.Socket;
-import java.net.URL;
 import java.util.ArrayList;
 
 @Service
