@@ -14,10 +14,9 @@ import ru.nsu.ccfit.verba.verbaapi.platform.Response
 @RestController
 @RequestMapping("/catalog")
 @Tag(name = "Каталоги", description = "Запросы для взаимодействия с экземплярами каталогов")
-class CatalogController (
-    @Autowired
+class CatalogController(
     val catalogService: CatalogService
-){
+) {
 
 
     @PostMapping("/{id}")
@@ -31,15 +30,19 @@ class CatalogController (
     @PostMapping("/create")
     @Operation(summary = "Добавление каталога")
     @ApiResponse(responseCode = "200")
-    fun add(@RequestBody catalogDto: CatalogDto): Response<Void> {
-        catalogService.add(catalogDto)
+    fun add(
+        @RequestHeader("user-id") userId: Long,
+        @RequestParam("group-id") groupId: Long,
+        @RequestBody catalogDto: CatalogDto
+    ): Response<Void> {
+        catalogService.add(catalogDto, userId, groupId)
         return Response.withoutErrors()
     }
 
     @GetMapping("/all/group/{id}")
     @Operation(summary = "Получение списка каталогов группы")
     @ApiResponse(responseCode = "200")
-    fun getAll(@PathVariable("id") groupId: Long): Response<List<GroupDto>> {
+    fun getAll(@PathVariable("id") groupId: Long): Response<List<CatalogDto>> {
         return Response.withData(catalogService.getAllCatalogByGroup(groupId))
     }
 
