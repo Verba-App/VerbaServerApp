@@ -32,4 +32,5 @@ class UsersServiceTest {
     fun `TestContainer is running`() {
         Assertions.assertTrue(pgContainer.isRunning)
     }
+
 }
