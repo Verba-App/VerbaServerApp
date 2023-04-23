@@ -8,7 +8,8 @@ import ru.nsu.ccfit.verba.verbaapi.platform.exception.NotFoundException
 @Service
 class GroupService(
     private val groupCatalogMapper: GroupCatalogMapper,
-    private val groupRepository: GroupRepository
+    private val groupRepository: GroupRepository,
+    private val allowGroupRepository: AllowGroupRepository
 ) {
 
     fun getById(id: Long): GroupDto {
@@ -27,12 +28,16 @@ class GroupService(
         }
     }
 
-    fun delete(id: Long) {
-        groupRepository.deleteById(id)
+    fun delete(idUser:Long,idGroup: Long) {
+        allowGroupRepository.removeUserFromGroup(idUser,idGroup)
     }
 
     fun getAllGroupByUser(userId: Long): List<GroupDto> {
         return groupRepository.getAllGroupByUserId(userId).map(groupCatalogMapper::toDto)
+    }
+
+    fun getAllAvailableGroup(userId: Long): List<GroupDto> {
+        return groupRepository.getAllAvailableGroupByUserId(userId).map(groupCatalogMapper::toDto)
     }
 
 }

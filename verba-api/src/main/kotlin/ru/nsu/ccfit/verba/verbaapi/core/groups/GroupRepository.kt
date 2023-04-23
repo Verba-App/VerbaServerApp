@@ -18,4 +18,6 @@ interface GroupRepository : CrudRepository<GroupCatalog, Long> {
     @Query("SELECT gc FROM GroupCatalog gc WHERE gc.author.id = :userId")
     fun getAllGroupByUserId(@Param("userId") userId: Long): List<GroupCatalog>
 
+    @Query("SELECT gc FROM GroupCatalog gc INNER JOIN AllowUserGroup aug ON gc.id = aug.group.id WHERE aug.user.id = :userId ")
+    fun getAllAvailableGroupByUserId(@Param("userId") userId: Long):List<GroupCatalog>
 }

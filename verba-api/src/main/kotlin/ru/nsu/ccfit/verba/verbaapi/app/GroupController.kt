@@ -11,7 +11,7 @@ import ru.nsu.ccfit.verba.verbaapi.core.groups.GroupService
 import ru.nsu.ccfit.verba.verbaapi.platform.Response
 
 @RestController
-@RequestMapping("/group")
+@RequestMapping("api/group")
 @Tag(name = "Группы", description = "Запросы для взаимодействия с экземплярами групп")
 class GroupController(
     @Autowired
@@ -37,24 +37,24 @@ class GroupController(
     @PostMapping("/{id}/delete")
     @Operation(summary = "Удаление группы")
     @ApiResponse(responseCode = "200")
-    fun delete(@PathVariable id: Long): Response<Void> {
-        groupService.delete(id)
+    fun delete(@RequestHeader("user-id") userId: Long, @PathVariable("id") groupId: Long): Response<Void> {
+        groupService.delete(userId,groupId)
         return Response.withoutErrors()
     }
 
 
     @GetMapping("/all/user")
-    @Operation(summary = "Получение списка имеющихся клиентов")
+    @Operation(summary = "Получение списка групп пользователся")
     @ApiResponse(responseCode = "200")
     fun getAllByUser(@RequestHeader("user-id") userId: Long): Response<List<GroupDto>> {
         return Response.withData(groupService.getAllGroupByUser(userId))
     }
 
     @GetMapping("/all/available")
-    @Operation(summary = "Получение списка имеющихся клиентов")
+    @Operation(summary = "Получение списка всех доступных для пользователя групп")
     @ApiResponse(responseCode = "200")
     fun getAllAvailable(@RequestHeader("user-id") userId: Long): Response<List<GroupDto>> {
-        return Response.withData(groupService.getAllGroupByUser(userId))
+        return Response.withData(groupService.getAllAvailableGroup(userId))
     }
 
 
