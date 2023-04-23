@@ -21,7 +21,12 @@ public class AuthController {
 
     @PostMapping("/register")
     public Response<Void> addNewUser(@RequestBody RegisterDto request) {
-        service.saveUser(new UserCredential(1L, request.getUsername(), request.getEmail(), request.getPassword(), request.getPassword()));
+        UserCredential user = new UserCredential();
+        user.setName(request.getUsername());
+        user.setEmail(request.getEmail());
+        user.setRegion("US");
+        user.setPassword(request.getPassword());
+        service.saveUser(user);
         return Response.withoutErrors();
     }
 
