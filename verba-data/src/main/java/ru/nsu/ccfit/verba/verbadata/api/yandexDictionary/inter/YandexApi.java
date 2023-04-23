@@ -1,10 +1,10 @@
-package ru.nsu.ccfit.verba.verbadata.api.yandexDictionary;
+package ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.inter;
 
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.Dto.GetDTO;
+import ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.dto.GetDTO;
 
 public interface YandexApi {
     @GET("/api/v1/dicservice.json/lookup")

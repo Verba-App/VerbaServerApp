@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.verba.verbadata.Services;
+package ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.services;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import ru.nsu.ccfit.verba.verbadata.Dto.TranslateDTO;
-import ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.Dto.GetDTO;
-import ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.Dto.Def;
-import ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.Dto.Tr;
-import ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.YandexApi;
+import ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.dto.TranslateDTO;
+import ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.dto.GetDTO;
+import ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.dto.Def;
+import ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.dto.Tr;
+import ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.inter.YandexApi;
 
 
 import java.io.IOException;

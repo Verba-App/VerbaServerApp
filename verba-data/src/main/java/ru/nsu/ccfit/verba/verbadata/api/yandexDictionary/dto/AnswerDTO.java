@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.verba.verbadata.Dto;
+package ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.dto;
 
 import java.util.ArrayList;
 
