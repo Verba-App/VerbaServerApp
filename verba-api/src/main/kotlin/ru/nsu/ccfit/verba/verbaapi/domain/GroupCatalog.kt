@@ -7,8 +7,8 @@ import jakarta.persistence.*
 class GroupCatalog(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private var id: Long,
-    private val name: String,
+    var id: Long,
+    var name: String,
     @ManyToOne
-    private val author: User
+    var author: User
 )

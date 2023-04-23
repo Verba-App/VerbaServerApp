@@ -1,5 +1,6 @@
 server:
   port: 8081
+
 eureka:
   client:
     serviceUrl:
@@ -20,3 +21,7 @@ spring:
     username: postgres
     password: postgres
     driverClassName: org.postgresql.Driver
+springdoc:
+  swagger-ui:
+    enabled: true
+    url: swagger

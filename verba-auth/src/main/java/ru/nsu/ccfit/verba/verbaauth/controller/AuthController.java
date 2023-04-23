@@ -5,35 +5,44 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import ru.nsu.ccfit.verba.verbaauth.dto.AuthRequest;
+import ru.nsu.ccfit.verba.verbaauth.dto.AuthRequestDto;
+import ru.nsu.ccfit.verba.verbaauth.dto.RegisterDto;
+import ru.nsu.ccfit.verba.verbaauth.dto.Response;
 import ru.nsu.ccfit.verba.verbaauth.entity.UserCredential;
+import ru.nsu.ccfit.verba.verbaauth.exception.impl.InvalidAccessException;
 import ru.nsu.ccfit.verba.verbaauth.service.AuthService;
 
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
-    private final AuthService  service;
-    private  final AuthenticationManager authenticationManager;
+    private final AuthService service;
+    private final AuthenticationManager authenticationManager;
 
     @PostMapping("/register")
-    public String addNewUser(@RequestBody UserCredential user) {
-        return service.saveUser(user);
+    public Response<Void> addNewUser(@RequestBody RegisterDto request) {
+        UserCredential user = new UserCredential();
+        user.setName(request.getUsername());
+        user.setEmail(request.getEmail());
+        user.setRegion("US");
+        user.setPassword(request.getPassword());
+        service.saveUser(user);
+        return Response.withoutErrors();
     }
 
     @PostMapping("/token")
-    public String getToken(@RequestBody AuthRequest authRequest) {
-        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+    public Response<String> getToken(@RequestBody AuthRequestDto request) {
+        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         if (authenticate.isAuthenticated()) {
-            return service.generateToken(service.getUserByName(authenticate.getName()));
+            return Response.withData(service.generateToken(service.getUserByName(authenticate.getName())));
         } else {
-            throw new RuntimeException("invalid access");
+            throw new InvalidAccessException("User " + request + " invalid auth");
         }
     }
 
-    @GetMapping("/validate")
-    public String validateToken(@RequestParam("token") String token) {
+    @PostMapping("/authenticate")
+    public Response<Void> validateToken(@RequestParam("token") String token) {
         service.validateToken(token);
-        return "Token is valid";
+        return Response.withoutErrors();
     }
 }

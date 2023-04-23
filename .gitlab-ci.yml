@@ -3,23 +3,32 @@ before_script:
 
 stages:
   - build
-  - test
   - deploy
+  - test
+
+test:
+  tags:
+    - test
+  stage: test
+  script:
+    - echo "Все ок)"
 
 build:
   tags:
     - build
   stage: build
   script:
-    - ./gradlew bootJar
-    - docker-compose build
+    - docker-compose down
+  only:
+    - develop
 
 deploy:
   tags:
     - deploy
   stage: deploy
   script:
-    - docker-compose up -d
+    - ./gradlew bootJar
+    - docker-compose up -d --force-recreate --no-deps --build
   only:
     - develop
 

@@ -16,14 +16,13 @@ public class AuthService {
 
     private final JwtService jwtService;
 
-    public String saveUser(UserCredential credential) {
+    public void saveUser(UserCredential credential) {
         credential.setPassword(passwordEncoder.encode(credential.getPassword()));
         repository.save(credential);
-        return "user added to the system";
     }
 
     public String generateToken(UserCredential user) {
-        return jwtService.generateToken(user.getId(),user.getName());
+        return jwtService.generateToken(user.getId(), user.getName());
     }
 
     public void validateToken(String token) {

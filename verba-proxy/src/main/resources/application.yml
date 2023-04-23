@@ -15,7 +15,7 @@ spring:
     gateway:
       routes:
         - id: verba-api
-          uri: lb://VERBA-API
+          uri: http://localhost:8081
           predicates:
             - Path=/api/**
           filters:
@@ -29,6 +29,6 @@ spring:
             - AuthenticationFilter
 
         - id: verba-auth
-          uri: lb://VERBA-AUTH
+          uri: http://localhost:8090
           predicates:
             - Path=/auth/**
