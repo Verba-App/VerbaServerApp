@@ -1,10 +1,10 @@
-package ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.config;
+package ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.inter.YandexApi;
+import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.inter.YandexApi;
 
 @Configuration
 public class ApiConfig {

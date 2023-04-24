@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.dto;
+package ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto;
 public class TranslateDTO {
     String text;//перевод
     String pos;//часть речи

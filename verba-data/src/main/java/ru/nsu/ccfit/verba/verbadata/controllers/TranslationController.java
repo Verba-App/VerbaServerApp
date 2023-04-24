@@ -6,9 +6,9 @@ import com.google.gson.GsonBuilder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.dto.AnswerDTO;
-import ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.dto.TranslateDTO;
-import ru.nsu.ccfit.verba.verbadata.api.yandexDictionary.services.TranslationService;
+import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.AnswerDTO;
+import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.TranslateDTO;
+import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.services.TranslationService;
 
 import java.io.IOException;
 import java.util.ArrayList;
