@@ -14,9 +14,10 @@ interface CatalogRepository : JpaRepository<Catalog, Long> {
 
     @Modifying
     @Transactional
-    @Query("INSERT INTO catalog (name, create_date, author_id, group_id) VALUES (:name, :createDate, :authorId, :groupId)", nativeQuery = true)
-    fun createCatalog(@Param("name") name: String, @Param("createDate") createDate: Date, @Param("authorId") authorId: Long, @Param("groupId") groupId: Long)
+    @Query("INSERT INTO catalog (name, author_id, group_id) VALUES (:name, :authorId, :groupId)", nativeQuery = true)
+    fun createCatalog(@Param("name") name: String, @Param("authorId") authorId: Long, @Param("groupId") groupId: Long)
 
-    @Query("SELECT c FROM Catalog c WHERE c.group = :groupId")
+    @Transactional
+    @Query("SELECT c FROM Catalog c WHERE c.group.id = :groupId")
     fun getAllCatalogByGroupId(@Param("groupId") groupId: Long): List<Catalog>
 }

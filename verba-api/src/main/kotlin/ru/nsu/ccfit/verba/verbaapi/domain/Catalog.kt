@@ -10,7 +10,6 @@ class Catalog(
     @Id
     var id: Long,
     var name: String,
-    var createDate: Date,
     @ManyToOne
     var author: User,
     @ManyToOne
