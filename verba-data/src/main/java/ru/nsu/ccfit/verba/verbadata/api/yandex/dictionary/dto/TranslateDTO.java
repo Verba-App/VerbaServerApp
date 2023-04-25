@@ -1,12 +1,13 @@
 package ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto;
-public class TranslateDTO {
-    String text;//перевод
-    String pos;//часть речи
-    String ts;//транскрипция
 
-    public TranslateDTO(String text, String pos, String ts) {
-        this.text = text;
-        this.pos = pos;
-        this.ts = ts;
+public class TranslateDTO {
+    public String translate;//перевод
+    public String partOfSpeech;//часть речи
+    public String transcription;//транскрипция
+
+    public TranslateDTO(String translate, String partOfSpeech, String transcription) {
+        this.translate = translate;
+        this.partOfSpeech = partOfSpeech;
+        this.transcription = transcription;
     }
 }
