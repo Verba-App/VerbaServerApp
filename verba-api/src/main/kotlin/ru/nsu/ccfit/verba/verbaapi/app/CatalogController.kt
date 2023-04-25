@@ -12,7 +12,7 @@ import ru.nsu.ccfit.verba.verbaapi.core.groups.GroupDto
 import ru.nsu.ccfit.verba.verbaapi.platform.Response
 
 @RestController
-@RequestMapping("/catalog")
+@RequestMapping("api/catalog")
 @Tag(name = "Каталоги", description = "Запросы для взаимодействия с экземплярами каталогов")
 class CatalogController(
     val catalogService: CatalogService
@@ -26,6 +26,13 @@ class CatalogController(
         return Response.withData(catalogService.getById(id))
     }
 
+    @PostMapping("/delete/{id}")
+    @Operation(summary = "Удаляет каталог по заданному id")
+    @ApiResponse(responseCode = "200")
+    fun deleteById(@Parameter(description = "Идентификатор каталога") @PathVariable id: Long): Response<Void> {
+       catalogService.delete(id)
+        return Response.withoutErrors()
+    }
 
     @PostMapping("/create")
     @Operation(summary = "Добавление каталога")
@@ -33,9 +40,9 @@ class CatalogController(
     fun add(
         @RequestHeader("user-id") userId: Long,
         @RequestParam("group-id") groupId: Long,
-        @RequestBody catalogDto: CatalogDto
+        @RequestParam("name") name: String
     ): Response<Void> {
-        catalogService.add(catalogDto, userId, groupId)
+        catalogService.add(name, userId, groupId)
         return Response.withoutErrors()
     }
 

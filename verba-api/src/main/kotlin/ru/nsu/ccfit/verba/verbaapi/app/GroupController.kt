@@ -18,7 +18,7 @@ class GroupController(
     val groupService: GroupService
 ) {
 
-    @PostMapping("/{id}")
+    @GetMapping("/{id}")
     @Operation(summary = "Возвращает группу по заданному id")
     @ApiResponse(responseCode = "200")
     fun getById(@PathVariable id: Long): Response<GroupDto> {
