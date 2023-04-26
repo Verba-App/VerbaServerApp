@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.RequestDTO;
 import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.TranslateDTO;
 import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.GetDTO;
 import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.inter.YandexApi;
@@ -20,9 +19,9 @@ public class TranslationService {
     @Autowired
     private YandexApi service;
 
-    private GetDTO parseJson(RequestDTO request) throws IOException{
+    private GetDTO parseJson(String langUser, String langFrom, String langTo, String text) throws IOException{
         final GetDTO[] body = new GetDTO[1];
-        service.getData(request).enqueue(new Callback<GetDTO>() {
+        service.getData(langFrom+"-"+langTo,text,langUser).enqueue(new Callback<GetDTO>() {
             @Override
             public void onResponse(Call<GetDTO> call, Response<GetDTO> response) {
                 if (response.body()!=null) {
@@ -39,14 +38,18 @@ public class TranslationService {
 
     }
 
-    public ArrayList<TranslateDTO> translateWord(RequestDTO request) throws IOException {
-        GetDTO dicResult= parseJson(request);
+    public ArrayList<TranslateDTO> translateWord(String langUser, String langFrom, String langTo, String text) throws IOException {
+        GetDTO dicResult= parseJson(langUser, langFrom, langTo, text);
+        if (dicResult==null){
+            return null;
+        }
         ArrayList<TranslateDTO> response=new ArrayList<>();
+
         if (dicResult.definitions != null) {
             for (GetDTO.Definition article: dicResult.definitions) {
                 if (article.translates != null) {
                     for (GetDTO.Translate translate: article.translates) {
-                        GetDTO dicResult2=parseJson(new RequestDTO(request.langUser,request.langFrom,request.langTo, translate.text));
+                        GetDTO dicResult2=parseJson(langUser, langTo, langTo, translate.text);
                         String transcription="";
                         if (dicResult2!=null&&!dicResult2.definitions.isEmpty()){
                             GetDTO.Definition definition=dicResult2.definitions.get(0);

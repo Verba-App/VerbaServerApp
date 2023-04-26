@@ -7,7 +7,6 @@ import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.AnswerDTO;
-import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.RequestDTO;
 import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.TranslateDTO;
 import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.services.TranslationService;
 
@@ -23,11 +22,15 @@ public class TranslationController {
     private TranslationService translationService;
 
     @PostMapping("/generate")
-    public String translate(@RequestBody RequestDTO request) throws IOException{
-        ArrayList<TranslateDTO> translates = translationService.translateWord(request);
+    public String translate(@RequestParam String text, @RequestParam String lang) throws IOException{
+        ArrayList<TranslateDTO> translates = translationService.translateWord(lang, lang, "en", text);
+
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .create();
-        return gson.toJson(new AnswerDTO("s",translates));
+        if (translates==null){
+            return gson.toJson(new AnswerDTO(ERROR_STATUS,null));
+        }
+        return gson.toJson(new AnswerDTO(SUCCESS_STATUS,translates));
     }
 }

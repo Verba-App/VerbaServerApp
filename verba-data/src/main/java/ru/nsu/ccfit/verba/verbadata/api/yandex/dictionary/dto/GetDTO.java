@@ -17,9 +17,10 @@ public class GetDTO {
         public ArrayList<Translate> translates;//массив переводов
 
     }
-    public class Example{
+    public class Example{   
         public String text;//пример
-        public ArrayList<Translate> tr;//перевод примеров
+        @SerializedName("tr")
+        public ArrayList<Translate> translates;//массив переводов
     }
     public static class Mean{
         public String text;//значение

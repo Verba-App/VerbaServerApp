@@ -27,14 +27,10 @@ public class ApiConfig {
                 HttpUrl originalHttpUrl = originalRequest.url();
 
                 HttpUrl modifiedUrl = originalHttpUrl.newBuilder()
-                        .addQueryParameter("langUser", "langUser")
-                        .addQueryParameter("langFrom", "langFrom")
-                        .addQueryParameter("langTo", "langTo")
-                        .addQueryParameter("word", "word")
+                        .addQueryParameter("key", apiKey)
                         .build();
 
                 Request modifiedRequest = originalRequest.newBuilder()
-                        .addHeader("Authorization", apiKey)
                         .url(modifiedUrl)
                         .build();
 
