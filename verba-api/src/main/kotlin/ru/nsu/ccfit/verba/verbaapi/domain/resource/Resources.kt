@@ -4,8 +4,8 @@ import jakarta.persistence.*
 import ru.nsu.ccfit.verba.verbaapi.domain.User
 
 enum class ResourceType {
-    FILE,
-    QOUTE
+    PHOTO,
+    QUOTE
 }
 
 

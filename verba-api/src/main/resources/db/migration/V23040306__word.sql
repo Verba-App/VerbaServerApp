@@ -1,4 +1,4 @@
-create type word_type as enum ('verb', 'noun');
+create type word_type as enum ('VERB', 'NOUN');
 
 CREATE TABLE "word"
 (
