@@ -1,26 +1,16 @@
 package ru.nsu.ccfit.verba.verbaapi.core.cards
 
-import org.mapstruct.Mapper
-import org.mapstruct.ReportingPolicy
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Component
+import org.mapstruct.*
 import ru.nsu.ccfit.verba.verbaapi.core.words.WordMapper
 import ru.nsu.ccfit.verba.verbaapi.domain.card.Card
 
-@Component
-class CardMapper {
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring", uses = [WordMapper::class])
+abstract class CardMapper {
 
-    @Autowired
-    private val wordMapper: WordMapper? = null
+    abstract fun toEntity(cardDto: CardDto): Card
 
-    fun toDto(card: Card): CardDto {
+    abstract fun toDto(card: Card): CardDto
 
-        val cardDto = CardDto()
-        cardDto.id = card.id
-        cardDto.create = card.create
-        cardDto.repetition = card.repetition
-        cardDto.type = card.type
-        cardDto.word = wordMapper!!.toDto(card.word)
-        return cardDto
-    }
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    abstract fun partialUpdate(cardDto: CardDto, @MappingTarget card: Card): Card
 }

@@ -16,20 +16,22 @@ enum class CardType {
 @Entity
 @Table(name = "card")
 @Inheritance(strategy = InheritanceType.JOINED)
-open class Card {
+open class Card(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    open var id: Long = 0
+    open var id: Long = 0,
 
-    open lateinit var create: OffsetDateTime
-    open lateinit var repetition: OffsetDateTime
+    open var createe: OffsetDateTime,
 
-    @ManyToOne
-    open lateinit var catalog: Catalog
+    open var repetition: OffsetDateTime,
 
     @Enumerated(EnumType.STRING)
-    open lateinit var type: CardType
+    var type: CardType,
 
     @ManyToOne
-    open lateinit var word: Word
-}
+    open var catalog: Catalog,
+
+    @ManyToOne
+    open var word: Word
+)
+

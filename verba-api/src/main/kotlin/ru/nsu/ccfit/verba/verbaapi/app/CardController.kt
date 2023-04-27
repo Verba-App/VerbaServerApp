@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import ru.nsu.ccfit.verba.verbaapi.core.cards.CardDto
 import ru.nsu.ccfit.verba.verbaapi.core.cards.CardService
-import ru.nsu.ccfit.verba.verbaapi.core.catalogs.CatalogService
 import ru.nsu.ccfit.verba.verbaapi.platform.Response
 
 @RestController

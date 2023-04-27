@@ -3,7 +3,7 @@ CREATE TYPE card_type AS ENUM ('PHOTO', 'QUOTE');
 CREATE TABLE "card"
 (
     "id"         BIGINT                      NOT NULL,
-    "create"     TIMESTAMP WITH TIME ZONE    NOT NULL,
+    "createe"     TIMESTAMP WITH TIME ZONE    NOT NULL,
     "repetition" TIMESTAMP WITH TIME ZONE    NOT NULL,
     "catalog_id" BIGINT REFERENCES "catalog" NOT NULL,
     "word_id"    BIGINT REFERENCES "word"    NOT NULL,
