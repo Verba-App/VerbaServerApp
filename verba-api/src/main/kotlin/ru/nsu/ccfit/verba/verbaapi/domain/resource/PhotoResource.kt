@@ -14,6 +14,6 @@ class PhotoResource(
     type: ResourceType,
     author: User,
     @Column
-    private val path: String,
+    val path: String,
 
     ) : Resources(id, name, type, author)

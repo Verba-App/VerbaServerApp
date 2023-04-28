@@ -14,5 +14,5 @@ class QuoteResource(
     type: ResourceType,
     author: User,
     @Column
-    private val context: String,
+    val context: String,
 ) : Resources(id, name, type, author)
