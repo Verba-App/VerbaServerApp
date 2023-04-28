@@ -12,14 +12,14 @@ enum class WordType {
 class Word(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private var id: Long,
+    var id: Long,
 
-    private val word: String,
+    val word: String,
 
-    private val transcription: String,
+    val transcription: String,
 
     @Enumerated(EnumType.STRING)
-    private val type: WordType,
+    val type: WordType,
 
     @ManyToMany
     @JoinTable(

@@ -7,18 +7,18 @@ import jakarta.persistence.*
 class AllowUserGroup(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private var id: Long,
+    var id: Long,
 
     @ManyToOne
-    private val user: User,
+    val user: User,
 
     @ManyToOne
-    private val group: GroupCatalog,
+    val group: GroupCatalog,
 
-    private val accessRead: Boolean,
+    val accessRead: Boolean,
 
-    private val accessChanges: Boolean,
+    val accessChanges: Boolean,
 
     @ManyToOne
-    private val tactic: Tactics
+    val tactic: Tactics
 )

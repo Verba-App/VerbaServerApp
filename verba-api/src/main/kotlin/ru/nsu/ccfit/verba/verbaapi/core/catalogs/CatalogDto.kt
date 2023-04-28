@@ -4,4 +4,4 @@ import java.io.Serializable
 import java.sql.Date
 
 
-data class CatalogDto(val id: Long, val name: String) : Serializable
+data class CatalogDto(var id: Long, var name: String) : Serializable

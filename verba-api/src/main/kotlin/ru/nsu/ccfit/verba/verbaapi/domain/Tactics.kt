@@ -8,18 +8,18 @@ import jakarta.persistence.*
 class Tactics(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private var id: Long,
-    private val name: String,
+    var id: Long,
+    val name: String,
 
     @Convert(converter = JsonListStagesConverter::class)
     @Column(columnDefinition = "jsonb")
-    private var stages: List<StageStudy>,
+    var stages: List<StageStudy>,
 
     @ManyToOne
-    private val author: User
+    val author: User
 )
 
-class JsonListStagesConverter: AttributeConverter<List<StageStudy>, String> {
+class JsonListStagesConverter : AttributeConverter<List<StageStudy>, String> {
 
     private val objectMapper = ObjectMapper()
 
@@ -28,11 +28,14 @@ class JsonListStagesConverter: AttributeConverter<List<StageStudy>, String> {
     }
 
     override fun convertToEntityAttribute(dbData: String): List<StageStudy> {
-        return objectMapper.readValue(dbData, objectMapper.typeFactory.constructCollectionType(List::class.java, StageStudy::class.java))
+        return objectMapper.readValue(
+            dbData,
+            objectMapper.typeFactory.constructCollectionType(List::class.java, StageStudy::class.java)
+        )
     }
 }
 
 data class StageStudy(
     val name: String,
-    val countDay:Int
+    val countDay: Int
 )

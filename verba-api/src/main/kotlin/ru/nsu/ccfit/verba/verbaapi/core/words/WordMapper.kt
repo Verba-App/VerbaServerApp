@@ -1,6 +1,7 @@
 package ru.nsu.ccfit.verba.verbaapi.core.words
 
 import org.mapstruct.*
+import ru.nsu.ccfit.verba.verbaapi.core.category.CategoryMapper
 import ru.nsu.ccfit.verba.verbaapi.domain.Word
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring", uses = [CategoryMapper::class])

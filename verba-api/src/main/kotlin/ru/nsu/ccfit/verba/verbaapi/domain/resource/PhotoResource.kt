@@ -2,7 +2,6 @@ package ru.nsu.ccfit.verba.verbaapi.domain.resource
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
-import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
 import ru.nsu.ccfit.verba.verbaapi.domain.User
 
