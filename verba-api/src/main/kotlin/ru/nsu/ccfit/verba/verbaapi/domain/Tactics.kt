@@ -19,6 +19,7 @@ class Tactics(
     val author: User
 )
 
+@Converter
 class JsonListStagesConverter : AttributeConverter<List<StageStudy>, String> {
 
     private val objectMapper = ObjectMapper()
