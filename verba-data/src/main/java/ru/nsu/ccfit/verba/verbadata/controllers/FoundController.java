@@ -20,7 +20,7 @@ public class FoundController {
 
     @PostMapping("/data/image/found")
     public ResponseDto<List<String>> generateImages(@RequestParam("search") String request) throws IOException {
-        return foundService.generateImage(request);
+        return ResponseDto.withData(foundService.generateImage(request));
     }
 
 }

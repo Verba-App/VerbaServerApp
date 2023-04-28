@@ -1,10 +1,10 @@
 package ru.nsu.ccfit.verba.verbadata.api.openai.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
+@AllArgsConstructor
 public class GeneratorRequestDto {
     //** Запрос */
     private String prompt;
@@ -20,4 +20,13 @@ public class GeneratorRequestDto {
 
     //** Идентификатор пользователя */
     private String user;
+
+    public GeneratorRequestDto(String prompt, int n, String size, String response_format)
+    {
+        this.prompt = prompt;
+        this.n = n;
+        this.size = size;
+        this.response_format = response_format;
+    }
+
 }

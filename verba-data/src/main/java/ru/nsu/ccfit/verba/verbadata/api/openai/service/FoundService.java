@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 import org.springframework.stereotype.Service;
 import ru.nsu.ccfit.verba.verbadata.api.openai.dto.GeneratorRequestDto;
+import ru.nsu.ccfit.verba.verbadata.api.openai.dto.GeneratorResponseDto;
 import ru.nsu.ccfit.verba.verbadata.api.openai.dto.ResponseDto;
 import ru.nsu.ccfit.verba.verbadata.api.openai.inter.OpenAiApiInterface;
 
@@ -28,19 +29,18 @@ public class FoundService {
     @Value("${api.openai.format}")
     private String format;
 
-    public ResponseDto<List<String>> generateImage(String request) throws IOException {
+    public List<String> generateImage(String request) throws IOException {
 
-        Call<List<String>> retrofitCall = service.generate(new GeneratorRequestDto(request, n, size, format));
+        Call<GeneratorResponseDto> retrofitCall = service.generate(new GeneratorRequestDto(request, n, size, format));
 
-        Response<List<String>> response = retrofitCall.execute();
+        Response<GeneratorResponseDto> response = retrofitCall.execute();
 
         if (!response.isSuccessful()) {
             throw new IOException(response.errorBody() != null
                     ? response.errorBody().string() : "Unknown error");
         }
 
-        return ResponseDto.withData(response.body());
-        //return response.body();
+        return response.body().getStrings();
     }
 
 
