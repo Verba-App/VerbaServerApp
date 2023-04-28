@@ -1,5 +1,6 @@
 package ru.nsu.ccfit.verba.verbadata.api.openai.conf;
 
+import com.google.gson.internal.bind.CollectionTypeAdapterFactory;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
