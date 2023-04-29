@@ -20,21 +20,13 @@ public class TranslationService {
     private YandexApi service;
 
     private GetDTO parseJson(String langUser, String langFrom, String langTo, String text) throws IOException{
-        final GetDTO[] body = new GetDTO[1];
-        service.getData(langFrom+"-"+langTo,text,langUser).enqueue(new Callback<GetDTO>() {
-            @Override
-            public void onResponse(Call<GetDTO> call, Response<GetDTO> response) {
-                if (response.body()!=null) {
-                    body[0] =response.body();
-                }
-            }
-            @Override
-            public void onFailure(Call<GetDTO> call, Throwable t) {
-                System.out.println("ERROR");
-                body[0]=null;
-            }
-        });
-        return body[0];
+        Call<GetDTO> retrofitCall = service.getData(langFrom+"-"+langTo,text,langFrom);
+
+        Response<GetDTO> response = retrofitCall.execute();
+
+        int a=1;
+        return response.body();
+
 
     }
 
