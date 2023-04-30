@@ -20,13 +20,13 @@ public class FoundService {
     @Autowired
     private OpenAiApiInterface service;
 
-    @Value("${api.openai.n}")
+    @Value("${api.openai.params.n}")
     private int n;
 
-    @Value("${api.openai.size}")
+    @Value("${api.openai.params.size}")
     private String size;
 
-    @Value("${api.openai.format}")
+    @Value("${api.openai.params.format}")
     private String format;
 
     public List<String> generateImage(String request) throws IOException {

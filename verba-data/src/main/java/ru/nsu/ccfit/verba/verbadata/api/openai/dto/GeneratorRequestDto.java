@@ -18,15 +18,4 @@ public class GeneratorRequestDto {
     //** Формат: url или b64_json */
     private String response_format;
 
-    //** Идентификатор пользователя */
-    private String user;
-
-    public GeneratorRequestDto(String prompt, int n, String size, String response_format)
-    {
-        this.prompt = prompt;
-        this.n = n;
-        this.size = size;
-        this.response_format = response_format;
-    }
-
 }
