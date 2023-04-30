@@ -31,6 +31,27 @@ class CardController(
         return Response.withData(cardService.getCardById(id))
     }
 
+    @PostMapping("/renewal/{id}")
+    @Operation(summary = "Оставляет этап изучения каточки неизменненным")
+    @ApiResponse(responseCode = "200")
+    fun renewalCardById(
+        @RequestHeader("user-id") userId: Long,
+        @Parameter(description = "Идентификатор карты") @PathVariable("id") cardId: Long
+    ): Response<Void> {
+        cardService.renewalCardByUserId(userId,cardId)
+        return Response.withoutErrors()
+    }
+
+    @PostMapping("/studied/{id}")
+    @Operation(summary = "Переводит каточку на следующий этап изучения")
+    @ApiResponse(responseCode = "200")
+    fun studiedCardById(
+        @RequestHeader("user-id") userId: Long,
+        @Parameter(description = "Идентификатор карты") @PathVariable("id") cardId: Long): Response<Void> {
+        cardService.studiedCardByUserId(userId,cardId)
+        return Response.withoutErrors()
+    }
+
     @PostMapping("/photo/{id}")
     @Operation(summary = "Возвращает экземпляр фото-карты по заданному id")
     @ApiResponse(responseCode = "200")

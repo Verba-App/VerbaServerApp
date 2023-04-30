@@ -15,8 +15,7 @@ class PhotoCard(
     catalog: Catalog,
     type: CardType,
     create: OffsetDateTime,
-    repetition: OffsetDateTime,
     word: Word,
     @ManyToOne
     var photoResource: PhotoResource
-) : Card(id, create, repetition,type, catalog, word)
+) : Card(id, create,type, catalog, word)

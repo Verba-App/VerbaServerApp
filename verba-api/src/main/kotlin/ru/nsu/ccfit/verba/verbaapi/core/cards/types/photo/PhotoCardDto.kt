@@ -8,9 +8,8 @@ import java.time.OffsetDateTime
 
 class PhotoCardDto(
     override var id: Long = 0,
-    override var createe: OffsetDateTime? = null,
-    override var repetition: OffsetDateTime? = null,
-    override var type: CardType? = null,
-    override var word: WordDto? = null,
-    var photoResource: PhotoResourceDto? = null
-) : CardDto(id, createe, repetition, type, word)
+    override var createDate: OffsetDateTime?,
+    override var type: CardType?,
+    override var word: WordDto?,
+    var photoResource: PhotoResourceDto?
+) : CardDto(id, createDate, type, word)

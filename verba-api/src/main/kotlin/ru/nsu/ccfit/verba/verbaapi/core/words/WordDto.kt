@@ -6,7 +6,7 @@ import java.io.Serializable
 
 data class WordDto(
     var id: Long? ,
-    var word: String? ,
+    var text: String? ,
     var transcription: String? ,
     var type: WordType?,
     var categories: Set<CategoryDto?>

@@ -14,7 +14,7 @@ class Word(
     @Id
     var id: Long,
 
-    val word: String,
+    val text: String,
 
     val transcription: String,
 

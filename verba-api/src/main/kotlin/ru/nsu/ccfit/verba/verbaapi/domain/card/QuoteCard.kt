@@ -16,8 +16,7 @@ class QuoteCard(
     catalog: Catalog,
     type: CardType,
     create: OffsetDateTime,
-    repetition: OffsetDateTime,
     word: Word,
     @ManyToOne
     var quoteResource: QuoteResource
-) : Card(id, create, repetition, type ,catalog, word)
+) : Card(id, create, type ,catalog, word)

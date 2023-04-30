@@ -3,7 +3,6 @@ package ru.nsu.ccfit.verba.verbaapi.domain.card
 import jakarta.persistence.*
 import ru.nsu.ccfit.verba.verbaapi.domain.Catalog
 import ru.nsu.ccfit.verba.verbaapi.domain.Word
-import java.sql.Date
 import java.time.OffsetDateTime
 
 
@@ -21,12 +20,11 @@ open class Card(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     open var id: Long = 0,
 
-    open var createe: OffsetDateTime,
-
-    open var repetition: OffsetDateTime,
+    @Column(name = "create_date")
+    open var createDate: OffsetDateTime,
 
     @Enumerated(EnumType.STRING)
-    var type: CardType,
+    open var type: CardType,
 
     @ManyToOne
     open var catalog: Catalog,

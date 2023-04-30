@@ -12,6 +12,7 @@ import org.springframework.test.context.jdbc.Sql
 import ru.nsu.ccfit.verba.verbaapi.core.ConfigApp
 import ru.nsu.ccfit.verba.verbaapi.core.cards.CardRepository
 import ru.nsu.ccfit.verba.verbaapi.core.catalogs.CatalogService
+import ru.nsu.ccfit.verba.verbaapi.core.groups.AllowGroupRepository
 
 
 @Import(ConfigApp::class)
@@ -24,12 +25,15 @@ class CardTestConfig
     initializers = [TestContainerDbContextInitializer::class]
 )
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@Sql(statements = ["TRUNCATE TABLE cards CASCADE;"])
+@Sql(statements = ["TRUNCATE TABLE card CASCADE;"])
 @Transactional(rollbackOn = [Exception::class])
 class CardServiceTest {
 
     @Autowired
     lateinit var cardRepository: CardRepository
+    @Autowired
+    lateinit var allowGroupRepository: AllowGroupRepository
+
 
     @Test
     @Sql(
@@ -39,7 +43,23 @@ class CardServiceTest {
         ],
         executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
     )
-    fun  `select card`(){
+    fun `select card`() {
         cardRepository.findAllByCatalogId(1)
     }
+
+    @Test
+    @Sql(
+        value = [
+            "/db/insert-group.sql",
+            "/db/insert-catalog.sql",
+            "/db/insert-photo-card.sql"
+        ],
+        executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
+    )
+    fun `hash map`() {
+        val response  = allowGroupRepository.findAll()
+
+    }
+
+
 }
