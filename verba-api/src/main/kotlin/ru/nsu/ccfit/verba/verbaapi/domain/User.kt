@@ -1,10 +1,9 @@
 package ru.nsu.ccfit.verba.verbaapi.domain
 
 import jakarta.persistence.*
-import java.sql.Date
 
 @Entity
-@Table(name = "user")
+@Table(name = "verba_user")
 class User(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -13,8 +12,6 @@ class User(
     var name: String,
 
     var email: String,
-
-    var birthday: Date,
 
     var region: String,
 
