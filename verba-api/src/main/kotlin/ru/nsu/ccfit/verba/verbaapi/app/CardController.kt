@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.*
 import ru.nsu.ccfit.verba.verbaapi.core.cards.CardDto
 import ru.nsu.ccfit.verba.verbaapi.core.cards.CardService
+import ru.nsu.ccfit.verba.verbaapi.core.cards.StatusCardDto
 import ru.nsu.ccfit.verba.verbaapi.core.cards.types.photo.PhotoCardDto
 import ru.nsu.ccfit.verba.verbaapi.platform.Response
 
@@ -17,7 +18,7 @@ class CardController(
     val cardService: CardService
 ) {
 
-    @GetMapping("/all/catalog/{id}")
+        @GetMapping("/all/catalog/{id}")
     @Operation(summary = "Получение списка карточек каталога")
     @ApiResponse(responseCode = "200")
     fun getAllCard(@PathVariable("id") catalogId: Long): Response<List<CardDto>> {
@@ -38,17 +39,30 @@ class CardController(
         @RequestHeader("user-id") userId: Long,
         @Parameter(description = "Идентификатор карты") @PathVariable("id") cardId: Long
     ): Response<Void> {
-        cardService.renewalCardByUserId(userId,cardId)
+        cardService.renewalCardByUserId(userId, cardId)
         return Response.withoutErrors()
     }
+
+
+    @GetMapping("/status/{id}")
+    @Operation(summary = "Получение статуса карточка")
+    @ApiResponse(responseCode = "200")
+    fun getStatusCard(
+        @RequestHeader("user-id") userId: Long,
+        @PathVariable("id") cardId: Long
+    ): Response<StatusCardDto> {
+        return Response.withData(cardService.getStatusCardById(userId,cardId))
+    }
+
 
     @PostMapping("/studied/{id}")
     @Operation(summary = "Переводит каточку на следующий этап изучения")
     @ApiResponse(responseCode = "200")
     fun studiedCardById(
         @RequestHeader("user-id") userId: Long,
-        @Parameter(description = "Идентификатор карты") @PathVariable("id") cardId: Long): Response<Void> {
-        cardService.studiedCardByUserId(userId,cardId)
+        @Parameter(description = "Идентификатор карты") @PathVariable("id") cardId: Long
+    ): Response<Void> {
+        cardService.studiedCardByUserId(userId, cardId)
         return Response.withoutErrors()
     }
 

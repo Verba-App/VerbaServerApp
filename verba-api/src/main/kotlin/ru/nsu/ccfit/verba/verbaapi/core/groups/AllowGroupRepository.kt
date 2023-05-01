@@ -15,4 +15,16 @@ interface AllowGroupRepository : JpaRepository<AllowUserGroup, Long>{
     @Modifying
     @Query(value = "CALL remove_user_from_group(:userId, :groupId)", nativeQuery = true)
     fun removeUserFromGroup(@Param("userId") userId: Long, @Param("groupId") groupId: Long): Int
+
+    @Transactional
+    @Query(value = "  SELECT * from allow_user_group as aug" +
+            "    WHERE aug.user_id = :userId" +
+            "      AND EXISTS (SELECT 1 FROM catalog cat JOIN card c ON cat.id = c.catalog_id" +
+            "                  WHERE c.id = :cardId" +
+            "                    AND cat.group_id = aug.group_id);", nativeQuery = true)
+    fun getAllowUserGroupByUserIdAndCardId(@Param("userId") userId: Long, @Param("cardId") cardId: Long): AllowUserGroup
+
+
+
+
 }

@@ -11,7 +11,6 @@ import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.jdbc.Sql
 import ru.nsu.ccfit.verba.verbaapi.core.ConfigApp
 import ru.nsu.ccfit.verba.verbaapi.core.cards.CardRepository
-import ru.nsu.ccfit.verba.verbaapi.core.catalogs.CatalogService
 import ru.nsu.ccfit.verba.verbaapi.core.groups.AllowGroupRepository
 
 

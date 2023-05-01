@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import org.springframework.transaction.annotation.Transactional
 import ru.nsu.ccfit.verba.verbaapi.domain.card.Card
-import java.time.OffsetDateTime
 
 interface CardRepository : JpaRepository<Card, Long> {
     fun findAllByCatalogId(catalogId: Long): List<Card>

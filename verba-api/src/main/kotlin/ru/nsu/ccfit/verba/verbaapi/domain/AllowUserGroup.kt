@@ -2,13 +2,17 @@ package ru.nsu.ccfit.verba.verbaapi.domain
 
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import jakarta.persistence.*
 import java.time.OffsetDateTime
 
 data class StatusCard(
-    val stages: Long,
-    val repetitionDate: OffsetDateTime
-)
+    var stages: Long = 0,
+    var repetitionDate: OffsetDateTime = OffsetDateTime.now()
+) {
+    // default constructor
+    constructor() : this(0, OffsetDateTime.now())
+}
 
 @Entity
 @Table(name = "allow_user_group")
@@ -38,7 +42,7 @@ class AllowUserGroup(
 @Converter
 class StatusCardConverter : AttributeConverter<HashMap<Long, StatusCard>, String> {
 
-    private val objectMapper = ObjectMapper()
+    private val objectMapper = ObjectMapper().registerModule(JavaTimeModule())
 
     override fun convertToDatabaseColumn(attribute: HashMap<Long, StatusCard>): String {
         return objectMapper.writeValueAsString(attribute)
