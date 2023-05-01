@@ -4,10 +4,10 @@ package ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
-import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.TranslateDTO;
-import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.GetDTO;
+import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.InfoWordDto;
+import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.TranslateDto;
+import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.YandexTranslateDto;
 import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.inter.YandexApi;
 
 
@@ -19,39 +19,49 @@ public class TranslationService {
     @Autowired
     private YandexApi service;
 
-    private GetDTO parseJson(String langUser, String langFrom, String langTo, String text) throws IOException{
-        Call<GetDTO> retrofitCall = service.getData(langFrom+"-"+langTo,text,langFrom);
 
-        Response<GetDTO> response = retrofitCall.execute();
-
-        int a=1;
-        return response.body();
-
-
-    }
-
-    public ArrayList<TranslateDTO> translateWord(String langUser, String langFrom, String langTo, String text) throws IOException {
-        GetDTO dicResult= parseJson(langUser, langFrom, langTo, text);
-        if (dicResult==null){
+    public ArrayList<TranslateDto> translateWord(String langUser, String langFrom, String langTo, String text) throws IOException {
+        Call<YandexTranslateDto> retrofitCall = service.infoWords(langFrom + "-" + langTo, text, langFrom);
+        Response<YandexTranslateDto> responseInfo = retrofitCall.execute();
+        YandexTranslateDto dicResult = responseInfo.body();
+        if (dicResult == null) {
             return null;
         }
-        ArrayList<TranslateDTO> response=new ArrayList<>();
-
+        ArrayList<TranslateDto> response = new ArrayList<>();
         if (dicResult.definitions != null) {
-            for (GetDTO.Definition article: dicResult.definitions) {
+            for (YandexTranslateDto.Definition article : dicResult.definitions) {
                 if (article.translates != null) {
-                    for (GetDTO.Translate translate: article.translates) {
-                        GetDTO dicResult2=parseJson(langUser, langTo, langTo, translate.text);
-                        String transcription="";
-                        if (dicResult2!=null&&!dicResult2.definitions.isEmpty()){
-                            GetDTO.Definition definition=dicResult2.definitions.get(0);
-                            transcription= definition.transcription;
-                        }
-                        response.add(new TranslateDTO(translate.text,translate.partOfSpeech,transcription));
+                    for (YandexTranslateDto.Translate translate : article.translates) {
+                        response.add(new TranslateDto(translate.text, translate.partOfSpeech));
                     }
                 }
             }
         }
+        return response;
+    }
+
+    public InfoWordDto infoWord(String langUser, String langFrom, String langTo, String text) throws IOException {
+        InfoWordDto response = new InfoWordDto();
+        Call<YandexTranslateDto> retrofitCall = service.infoWords(langFrom + "-" + langTo, text, langFrom);
+        Response<YandexTranslateDto> responseInfo = retrofitCall.execute();
+        YandexTranslateDto dicResult = responseInfo.body();
+        ArrayList<YandexTranslateDto.Example> examples = new ArrayList<YandexTranslateDto.Example>();
+        ArrayList<YandexTranslateDto.Synonym> synonyms = new ArrayList<YandexTranslateDto.Synonym>();
+        if (dicResult.definitions != null) {
+            for (YandexTranslateDto.Definition article : dicResult.definitions) {
+                response.transcription = article.transcription;
+                if (article.translates != null) {
+                    for (YandexTranslateDto.Translate translate : article.translates) {
+                        if (translate.syn!=null)
+                            synonyms.addAll(translate.syn);
+                        if (translate.ex!=null)
+                            examples.addAll(translate.ex);
+                    }
+                }
+            }
+        }
+        response.synonyms=synonyms;
+        response.examples=examples;
         return response;
     }
 }

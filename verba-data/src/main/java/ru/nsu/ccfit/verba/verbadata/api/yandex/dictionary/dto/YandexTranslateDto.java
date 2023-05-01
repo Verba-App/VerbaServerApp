@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.ArrayList;
 
 @Data
-public class GetDTO {
+public class YandexTranslateDto {
     @SerializedName("def")
     public ArrayList<Definition> definitions;
 
@@ -28,11 +28,11 @@ public class GetDTO {
         public ArrayList<Translate> translates;//массив переводов
     }
     @Data
-    public static class Mean{
+    public class Mean{
         public String text;//значение
     }
     @Data
-    public static class Synonym{
+    public class Synonym{
         public String text;//синоним
     }
     @Data
