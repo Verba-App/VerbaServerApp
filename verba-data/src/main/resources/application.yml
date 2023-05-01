@@ -18,3 +18,8 @@ api:
     url: "https://api.openai.com/"
     content-type:  "application/json"
     api-key: "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"
+    params:
+      n: "2"
+      size: "1024x1024"
+      format: "url"
+

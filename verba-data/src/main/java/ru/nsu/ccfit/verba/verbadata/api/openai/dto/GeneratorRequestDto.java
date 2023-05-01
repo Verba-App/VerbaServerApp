@@ -1,10 +1,11 @@
 package ru.nsu.ccfit.verba.verbadata.api.openai.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.google.gson.annotations.SerializedName;
+import lombok.*;
 
 @Setter
 @Getter
+@AllArgsConstructor
 public class GeneratorRequestDto {
     //** Запрос */
     private String prompt;
@@ -16,8 +17,7 @@ public class GeneratorRequestDto {
     private String size;
 
     //** Формат: url или b64_json */
-    private String response_format;
+    @SerializedName("response_format")
+    private String responseFormat;
 
-    //** Идентификатор пользователя */
-    private String user;
 }
