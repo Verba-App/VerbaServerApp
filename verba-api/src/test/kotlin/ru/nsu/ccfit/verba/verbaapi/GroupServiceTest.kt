@@ -1,8 +1,6 @@
 package ru.nsu.ccfit.verba.verbaapi
 
 import jakarta.transaction.Transactional
-import junit.framework.TestCase.assertFalse
-import junit.framework.TestCase.assertTrue
 import org.hibernate.cfg.beanvalidation.IntegrationException
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -17,7 +15,6 @@ import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.jdbc.Sql
 import ru.nsu.ccfit.verba.verbaapi.core.ConfigApp
 import ru.nsu.ccfit.verba.verbaapi.core.groups.GroupService
-import ru.nsu.ccfit.verba.verbaapi.core.users.UserService
 import ru.nsu.ccfit.verba.verbaapi.platform.exception.NotFoundException
 
 @Import(ConfigApp::class)

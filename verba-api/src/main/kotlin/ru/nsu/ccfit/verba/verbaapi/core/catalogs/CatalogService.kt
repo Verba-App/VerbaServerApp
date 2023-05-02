@@ -19,9 +19,9 @@ class CatalogService(
         }
     }
 
-    fun add(catalogDto: CatalogDto, userId: Long, groupId: Long) {
+    fun add(name: String, userId: Long, groupId: Long) {
         try {
-            catalogRepository.createCatalog(catalogDto.name, catalogDto.createDate, userId, groupId)
+            catalogRepository.createCatalog(name, userId, groupId)
         } catch (e: DataIntegrityViolationException) {
             throw IntegrationException("Попытка добавления клиента приводит к нарушению целостности данных")
         }
@@ -29,5 +29,9 @@ class CatalogService(
 
     fun getAllCatalogByGroup(groupId: Long): List<CatalogDto> {
         return catalogRepository.getAllCatalogByGroupId(groupId).map(catalogMapper::toDto)
+    }
+
+    fun delete(id: Long) {
+        catalogRepository.deleteById(id)
     }
 }
