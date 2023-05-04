@@ -18,7 +18,7 @@ enum class CardType {
 open class Card(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    open var id: Long = 0,
+    open var id: Long,
 
     @Column(name = "create_date")
     open var createDate: OffsetDateTime,

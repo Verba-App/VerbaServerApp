@@ -12,7 +12,7 @@ import ru.nsu.ccfit.verba.verbaapi.core.resource.PhotoResourceMapper
 )
 abstract class PhotoCardMapper {
 
-    abstract fun toEntity(photoCardDto1: PhotoCardDto): PhotoCard
+    abstract fun toEntity(photoCardDto: PhotoCardDto): PhotoCard
 
     abstract fun toDto(photoCard: PhotoCard): PhotoCardDto
 

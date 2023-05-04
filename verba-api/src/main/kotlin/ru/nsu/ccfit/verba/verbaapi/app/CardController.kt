@@ -9,6 +9,7 @@ import ru.nsu.ccfit.verba.verbaapi.core.cards.CardDto
 import ru.nsu.ccfit.verba.verbaapi.core.cards.CardService
 import ru.nsu.ccfit.verba.verbaapi.core.cards.StatusCardDto
 import ru.nsu.ccfit.verba.verbaapi.core.cards.types.photo.PhotoCardDto
+import ru.nsu.ccfit.verba.verbaapi.core.users.UserDto
 import ru.nsu.ccfit.verba.verbaapi.platform.Response
 
 @RestController
@@ -73,4 +74,12 @@ class CardController(
         return Response.withData(cardService.getPhotoCardById(id))
     }
 
+
+    @PostMapping("/create/photo")
+    @Operation(summary = "Возвращает экземпляр фото-карты по заданному id")
+    @ApiResponse(responseCode = "200")
+    fun createPhotoCard(@RequestBody photoCardDto: PhotoCardDto): Response<Void> {
+        cardService.createPhotoCard(photoCardDto)
+        return Response.withoutErrors()
+    }
 }

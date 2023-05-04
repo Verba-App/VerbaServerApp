@@ -54,4 +54,8 @@ class CardService(
         return statusCardMapper.toDto(statusCard[cardId]!!)
     }
 
+    fun createPhotoCard(photoCardDto: PhotoCardDto) {
+        photoCardRepository.save(photoCardMapper.toEntity(photoCardDto))
+    }
+
 }
