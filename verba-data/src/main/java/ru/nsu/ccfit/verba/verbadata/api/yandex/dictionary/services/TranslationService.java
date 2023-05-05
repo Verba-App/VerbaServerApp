@@ -24,8 +24,9 @@ public class TranslationService {
         Call<YandexTranslateDto> retrofitCall = service.infoWords(langFrom + "-" + langTo, text, langFrom);
         Response<YandexTranslateDto> responseInfo = retrofitCall.execute();
         YandexTranslateDto dicResult = responseInfo.body();
-        if (dicResult == null) {
-            return null;
+        if(!responseInfo.isSuccessful()){
+            throw new IOException(responseInfo.errorBody() != null
+                    ? responseInfo.errorBody().string() : "Unknown error");
         }
         ArrayList<TranslateDto> response = new ArrayList<>();
         if (dicResult.definitions != null) {
@@ -37,6 +38,9 @@ public class TranslationService {
                 }
             }
         }
+        if(response.isEmpty()){
+            throw new IOException("No data");
+        }
         return response;
     }
 
@@ -44,10 +48,11 @@ public class TranslationService {
         InfoWordDto response = new InfoWordDto();
         Call<YandexTranslateDto> retrofitCall = service.infoWords(langFrom + "-" + langTo, text, langFrom);
         Response<YandexTranslateDto> responseInfo = retrofitCall.execute();
+        if(!responseInfo.isSuccessful()){
+            throw new IOException(responseInfo.errorBody() != null
+                    ? responseInfo.errorBody().string() : "Unknown error");
+        }
         YandexTranslateDto dicResult = responseInfo.body();
-
-
-
         ArrayList<YandexTranslateDto.Example> examples = new ArrayList<>();
         ArrayList<YandexTranslateDto.Synonym> synonyms = new ArrayList<>();
         response.transcription="";
@@ -66,6 +71,9 @@ public class TranslationService {
         }
         response.synonyms=synonyms;
         response.examples=examples;
+        if(response.synonyms.isEmpty() && response.examples.isEmpty() &&response.transcription.isEmpty()){
+            throw new IOException("No data");
+        }
         return response;
     }
 }

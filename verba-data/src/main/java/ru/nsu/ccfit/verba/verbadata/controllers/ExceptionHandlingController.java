@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.verba.verbadata.platform.exeption;
+package ru.nsu.ccfit.verba.verbadata.controllers;
 
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ru.nsu.ccfit.verba.verbadata.platform.ResponseDto;
 
 import ru.nsu.ccfit.verba.verbadata.platform.enumeration.Code;
+import ru.nsu.ccfit.verba.verbadata.platform.exeption.BasicVerbaException;
 
 import java.util.List;
 
@@ -16,8 +17,8 @@ import java.util.List;
 @ControllerAdvice
 public class ExceptionHandlingController {
 
-    @ExceptionHandler(BasicLicenceException.class)
-    public ResponseEntity<ResponseDto<Void>> handleLicenceException(BasicLicenceException exception) {
+    @ExceptionHandler(BasicVerbaException.class)
+    public ResponseEntity<ResponseDto<Void>> handleLicenceException(BasicVerbaException exception) {
         return getResponseWithError(exception.getCode(), exception);
     }
 

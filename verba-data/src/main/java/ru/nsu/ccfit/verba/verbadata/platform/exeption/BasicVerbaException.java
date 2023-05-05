@@ -6,14 +6,14 @@ import ru.nsu.ccfit.verba.verbadata.platform.enumeration.Code;
 
 
 @Getter
-public abstract class BasicLicenceException extends RuntimeException {
+public abstract class BasicVerbaException extends RuntimeException {
     private final Code code;
 
-    protected BasicLicenceException(Code code) {
+    protected BasicVerbaException(Code code) {
         this(code, code.getErrorMessage());
     }
 
-    protected BasicLicenceException(Code code, String message) {
+    protected BasicVerbaException(Code code, String message) {
         super(message);
         this.code = code;
     }

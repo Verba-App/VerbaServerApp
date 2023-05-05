@@ -7,7 +7,7 @@ import ru.nsu.ccfit.verba.verbadata.platform.enumeration.Code;
 
 
 @Value
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class ResponseDto<T> {
 
     Code code;
