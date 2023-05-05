@@ -1,7 +1,5 @@
 package ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.services;
 
-
-import jakarta.ws.rs.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
@@ -10,9 +8,8 @@ import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.InfoWordDto;
 import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.TranslateDto;
 import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.YandexTranslateDto;
 import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.inter.YandexApi;
+import  ru.nsu.ccfit.verba.verbadata.platform.exeption.NotFoundException;
 
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 @Service
@@ -21,12 +18,12 @@ public class TranslationService {
     private YandexApi service;
 
 
-    public ArrayList<TranslateDto> translateWord(String langUser, String langFrom, String langTo, String text) throws IOException {
+    public ArrayList<TranslateDto> translateWord(String langUser, String langFrom, String langTo, String text) throws Exception {
         Call<YandexTranslateDto> retrofitCall = service.infoWords(langFrom + "-" + langTo, text, langFrom);
         Response<YandexTranslateDto> responseInfo = retrofitCall.execute();
         YandexTranslateDto dicResult = responseInfo.body();
         if(!responseInfo.isSuccessful()){
-            throw new IOException(responseInfo.errorBody() != null
+            throw new Exception(responseInfo.errorBody() != null
                     ? responseInfo.errorBody().string() : "Unknown error");
         }
         ArrayList<TranslateDto> response = new ArrayList<>();
@@ -45,12 +42,12 @@ public class TranslationService {
         return response;
     }
 
-    public InfoWordDto infoWord(String langUser, String langFrom, String langTo, String text) throws IOException {
+    public InfoWordDto infoWord(String langUser, String langFrom, String langTo, String text) throws Exception {
         InfoWordDto response = new InfoWordDto();
         Call<YandexTranslateDto> retrofitCall = service.infoWords(langFrom + "-" + langTo, text, langFrom);
         Response<YandexTranslateDto> responseInfo = retrofitCall.execute();
         if(!responseInfo.isSuccessful()){
-            throw new IOException(responseInfo.errorBody() != null
+            throw new Exception(responseInfo.errorBody() != null
                     ? responseInfo.errorBody().string() : "Unknown error");
         }
         YandexTranslateDto dicResult = responseInfo.body();
@@ -72,7 +69,7 @@ public class TranslationService {
         }
         response.synonyms=synonyms;
         response.examples=examples;
-        if(response.synonyms.isEmpty() && response.examples.isEmpty() &&response.transcription.isEmpty()){
+        if(response.transcription.isEmpty()){
             throw new NotFoundException("No data");
         }
         return response;
