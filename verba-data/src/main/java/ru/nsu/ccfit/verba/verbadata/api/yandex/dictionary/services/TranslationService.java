@@ -1,6 +1,7 @@
 package ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.services;
 
 
+import jakarta.ws.rs.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
@@ -39,7 +40,7 @@ public class TranslationService {
             }
         }
         if(response.isEmpty()){
-            throw new IOException("No data");
+            throw new NotFoundException("No data");
         }
         return response;
     }
@@ -72,7 +73,7 @@ public class TranslationService {
         response.synonyms=synonyms;
         response.examples=examples;
         if(response.synonyms.isEmpty() && response.examples.isEmpty() &&response.transcription.isEmpty()){
-            throw new IOException("No data");
+            throw new NotFoundException("No data");
         }
         return response;
     }
