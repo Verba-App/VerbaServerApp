@@ -45,8 +45,12 @@ public class TranslationService {
         Call<YandexTranslateDto> retrofitCall = service.infoWords(langFrom + "-" + langTo, text, langFrom);
         Response<YandexTranslateDto> responseInfo = retrofitCall.execute();
         YandexTranslateDto dicResult = responseInfo.body();
-        ArrayList<YandexTranslateDto.Example> examples = new ArrayList<YandexTranslateDto.Example>();
-        ArrayList<YandexTranslateDto.Synonym> synonyms = new ArrayList<YandexTranslateDto.Synonym>();
+
+
+
+        ArrayList<YandexTranslateDto.Example> examples = new ArrayList<>();
+        ArrayList<YandexTranslateDto.Synonym> synonyms = new ArrayList<>();
+        response.transcription="";
         if (dicResult.definitions != null) {
             for (YandexTranslateDto.Definition article : dicResult.definitions) {
                 response.transcription = article.transcription;
