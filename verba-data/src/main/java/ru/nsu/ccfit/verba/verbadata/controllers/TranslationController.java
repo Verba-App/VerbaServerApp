@@ -16,12 +16,12 @@ public class TranslationController {
     private TranslationService translationService;
 
     @PostMapping("/translate")
-    public ResponseDto<ArrayList<TranslateDto>> translate(@RequestParam String text, @RequestParam String lang) throws Exception{
+    public ResponseDto<ArrayList<TranslateDto>> translate(@RequestParam String text, @RequestParam String lang){
         ArrayList<TranslateDto> translates = translationService.translateWord(lang, lang, "en", text);
         return ResponseDto.withData(translates);
     }
     @PostMapping("/info")
-    public ResponseDto<InfoWordDto> info(@RequestParam String text, @RequestParam String lang) throws Exception {
+    public ResponseDto<InfoWordDto> info(@RequestParam String text, @RequestParam String lang){
         InfoWordDto wordInfo = translationService.infoWord(lang, lang, "en", text);
         return   ResponseDto.withData(wordInfo);
     }

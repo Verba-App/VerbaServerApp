@@ -18,7 +18,7 @@ public class TranslationService {
     private YandexApi service;
 
 
-    public ArrayList<TranslateDto> translateWord(String langUser, String langFrom, String langTo, String text) throws Exception {
+    public ArrayList<TranslateDto> translateWord(String langUser, String langFrom, String langTo, String text){
         Call<YandexTranslateDto> retrofitCall = service.infoWords(langFrom + "-" + langTo, text, langFrom);
         Response<YandexTranslateDto> responseInfo = retrofitCall.execute();
         YandexTranslateDto dicResult = responseInfo.body();
@@ -42,7 +42,7 @@ public class TranslationService {
         return response;
     }
 
-    public InfoWordDto infoWord(String langUser, String langFrom, String langTo, String text) throws Exception {
+    public InfoWordDto infoWord(String langUser, String langFrom, String langTo, String text){
         InfoWordDto response = new InfoWordDto();
         Call<YandexTranslateDto> retrofitCall = service.infoWords(langFrom + "-" + langTo, text, langFrom);
         Response<YandexTranslateDto> responseInfo = retrofitCall.execute();
