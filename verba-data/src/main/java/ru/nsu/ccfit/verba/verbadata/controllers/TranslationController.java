@@ -15,6 +15,7 @@ public class TranslationController {
     @Autowired
     private TranslationService translationService;
 
+
     @PostMapping("/translate")
     public ResponseDto<ArrayList<TranslateDto>> translate(@RequestParam String text, @RequestParam String lang){
         ArrayList<TranslateDto> translates = translationService.translateWord(lang, lang, "en", text);
