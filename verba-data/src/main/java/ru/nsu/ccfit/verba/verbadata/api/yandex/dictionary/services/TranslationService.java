@@ -10,6 +10,7 @@ import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.dto.YandexTranslateDto
 import ru.nsu.ccfit.verba.verbadata.api.yandex.dictionary.inter.YandexApi;
 import  ru.nsu.ccfit.verba.verbadata.platform.exeption.NotFoundException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 @Service
@@ -20,11 +21,20 @@ public class TranslationService {
 
     public ArrayList<TranslateDto> translateWord(String langUser, String langFrom, String langTo, String text){
         Call<YandexTranslateDto> retrofitCall = service.infoWords(langFrom + "-" + langTo, text, langFrom);
-        Response<YandexTranslateDto> responseInfo = retrofitCall.execute();
+        Response<YandexTranslateDto> responseInfo = null;
+        try {
+            responseInfo = retrofitCall.execute();
+        }catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         YandexTranslateDto dicResult = responseInfo.body();
         if(!responseInfo.isSuccessful()){
-            throw new Exception(responseInfo.errorBody() != null
-                    ? responseInfo.errorBody().string() : "Unknown error");
+            try {
+                throw new Exception(responseInfo.errorBody() != null
+                        ? responseInfo.errorBody().string() : "Unknown error");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         ArrayList<TranslateDto> response = new ArrayList<>();
         if (dicResult.definitions != null) {
@@ -45,10 +55,19 @@ public class TranslationService {
     public InfoWordDto infoWord(String langUser, String langFrom, String langTo, String text){
         InfoWordDto response = new InfoWordDto();
         Call<YandexTranslateDto> retrofitCall = service.infoWords(langFrom + "-" + langTo, text, langFrom);
-        Response<YandexTranslateDto> responseInfo = retrofitCall.execute();
+        Response<YandexTranslateDto> responseInfo = null;
+        try {
+            responseInfo = retrofitCall.execute();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         if(!responseInfo.isSuccessful()){
-            throw new Exception(responseInfo.errorBody() != null
-                    ? responseInfo.errorBody().string() : "Unknown error");
+            try {
+                throw new Exception(responseInfo.errorBody() != null
+                        ? responseInfo.errorBody().string() : "Unknown error");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         YandexTranslateDto dicResult = responseInfo.body();
         ArrayList<YandexTranslateDto.Example> examples = new ArrayList<>();
