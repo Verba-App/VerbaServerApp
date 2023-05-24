@@ -11,5 +11,4 @@ public class VerbaDataApplication {
     public static void main(String[] args) {
         SpringApplication.run(VerbaDataApplication.class, args);
     }
-
 }
